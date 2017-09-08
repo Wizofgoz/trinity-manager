@@ -9,7 +9,7 @@ services:
             - ~/dev/trinity-manager:/var/www/trinity-manager
 #            - ./nginx:/etc/nginx
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-            - ./nginx/sites-available/dash.conf:/etc/nginx/conf.d/default.conf
+            - ./nginx/sites-available/trinity-manager.conf:/etc/nginx/conf.d/default.conf
         networks:
           trinity-network:
             ipv4_address: 10.6.0.5
