@@ -1,0 +1,19 @@
+#/bin/bash
+# downloads and creates arenasports, meta & sitads databases
+
+DOCKER_IP=$(docker-machine ip);
+
+# get current dir
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# create meta database
+$DIR/../../bin/sit-dbrefresh --user analytix --fetch meta --db-host $DOCKER_IP
+
+# create arenasports database
+$DIR/../../bin/sit-dbrefresh --user analytix --fetch arenasports --db-host $DOCKER_IP
+
+# create sitads directory
+mysql -h $DOCKER_IP -e "create database if not exists sitads"
+
+# add sitads schema
+mysql -h $DOCKER_IP  sitads < $DIR/../sql/sitads.sql
