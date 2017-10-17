@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Extensions\SHA1Hasher;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -30,12 +31,19 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
+     * @var SHA1Hasher $hasher
+     */
+    private $hasher;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(SHA1Hasher $hasher)
     {
+        $this->hasher = $hasher;
+
         $this->middleware('guest');
     }
 
@@ -48,8 +56,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:auth.account',
+            'email' => 'required|string|email|max:255|unique:auth.account',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,9 +71,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'name' => $data['username'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => $this->hasher->make($data['username'] . ":" . $data['password']),
         ]);
     }
 }

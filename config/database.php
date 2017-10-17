@@ -34,7 +34,7 @@ return [
     'connections' => [
         'auth' => [
             'driver' => 'mysql',
-            'host' => env('AUTH_DB_HOST', '127.0.0.1'),
+            'host' => env('AUTH_DB_HOST', 'trinity-manager-mysql'),
             'port' => env('AUTH_DB_PORT', '3306'),
             'database' => env('AUTH_DB_DATABASE', 'auth'),
             'username' => env('AUTH_DB_USERNAME', 'root'),
@@ -46,9 +46,10 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+
         'characters' => [
           'driver' => 'mysql',
-          'host' => env('CHAR_DB_HOST', '127.0.0.1'),
+          'host' => env('CHAR_DB_HOST', 'trinity-manager-mysql'),
           'port' => env('CHAR_DB_PORT', '3306'),
           'database' => env('CHAR_DB_DATABASE', 'characters'),
           'username' => env('CHAR_DB_USERNAME', 'root'),
@@ -60,9 +61,10 @@ return [
           'strict' => true,
           'engine' => null,
         ],
+
         'world' => [
           'driver' => 'mysql',
-          'host' => env('WORLD_DB_HOST', '127.0.0.1'),
+          'host' => env('WORLD_DB_HOST', 'trinity-manager-mysql'),
           'port' => env('WORLD_DB_PORT', '3306'),
           'database' => env('WORLD_DB_DATABASE', 'world'),
           'username' => env('WORLD_DB_USERNAME', 'root'),
@@ -73,6 +75,18 @@ return [
           'prefix' => '',
           'strict' => true,
           'engine' => null,
+        ],
+
+        'sqlite' => [
+          'driver' => 'sqlite',
+          'database' => storage_path('database/sqlite_database.db'),
+          'prefix' => '',
+        ],
+
+        'itemdisplaydb' => [
+          'driver' => 'sqlite',
+          'database' => storage_path('database/itemdisplay.db'),
+          'prefix' => '',
         ],
     ],
 
@@ -105,7 +119,7 @@ return [
         'client' => 'predis',
 
         'default' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'host' => env('REDIS_HOST', 'trinity-manager-cache'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
             'database' => 0,

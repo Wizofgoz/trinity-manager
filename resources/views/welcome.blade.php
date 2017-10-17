@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Trinity Manager
                 </div>
 
                 <div class="links">
