@@ -134,24 +134,53 @@ class Realm extends Model
      */
     public $timestamps = false;
 
-
-    public function status()
+    /**
+     * Text description of what flag the realm has
+     *
+     * @return string
+     */
+    public function flagDescription()
     {
         return self::FLAG_MAP[$this->flag];
     }
 
-    public function type()
+    /**
+     * Text description of what icon the realm has
+     *
+     * @return string
+     */
+    public function iconDescription()
     {
         return self::ICON_MAP[$this->icon];
     }
 
-    public function timezone()
+    /**
+     * Text description of what time zone the realm operates in
+     *
+     * @return string
+     */
+    public function timezoneDescription()
     {
         return self::TIMEZONE_MAP[$this->timezone];
     }
 
-    public function gamebuild()
+    /**
+     * Semantic version string of the client the realm supports
+     *
+     * @return mixed
+     */
+    public function buildVersion()
     {
         return self::BUILD_MAP[$this->gamebuild];
+    }
+
+    /**
+     * Returns the uptime model for the realm
+     *
+     * @return Uptime
+     */
+    public function uptime()
+    {
+        return $this->hasOne('App\Models\Uptime', 'realmid');
     }
 }

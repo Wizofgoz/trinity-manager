@@ -2,6 +2,10 @@
 
 namespace App;
 
+use App\Models\Character;
+use App\Models\Realm;
+use App\Models\SecurityLevel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -72,21 +76,33 @@ class User extends Authenticatable
     /**
      * Returns a collection of the Characters that belong to the account
      *
-     * @return Collection
+     * @return Builder
      */
     public function characters()
     {
-        return $this->hasMany('App\Models\Character', 'account');
+        (new Character)->iterateConnection('characters', function($connection) {
+            Character::connection($connection)->where();
+        });
     }
 
     /**
      * Returns a collection of the realms that the account has characters on
      *
-     * @return Collection
+     * @return Builder
      */
     public function realms()
     {
-        return $this->belongsToMany('App\Models\Realm', 'realmcharacters', 'acctid', 'realmid')
+        return $this->belongsToMany(Realm::class, 'realmcharacters', 'acctid', 'realmid')
             ->withPivot('numchars');
+    }
+
+    /**
+     * Returns a collection of the realms that the account has security clearance on
+     *
+     * @return Builder
+     */
+    public function securityLevels()
+    {
+        return SecurityLevel::where('id', '=', $this->id);
     }
 }

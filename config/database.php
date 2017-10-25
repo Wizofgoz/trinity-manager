@@ -47,7 +47,7 @@ return [
             'engine' => null,
         ],
 
-        'characters' => [
+        'characters1' => [
           'driver' => 'mysql',
           'host' => env('CHAR_DB_HOST', 'trinity-manager-mysql'),
           'port' => env('CHAR_DB_PORT', '3306'),
