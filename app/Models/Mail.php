@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Helpers\BelongsToRealm;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\Builder;
 
 class Mail extends Model
 {
+    use BelongsToRealm;
+
     /**
      * Mapping of mail types to descriptions
      *
@@ -26,13 +29,6 @@ class Mail extends Model
     const CHECK_MASK_COPIED = 0x04;
     const CHECK_MASK_COD_PAYMENT = 0x08;
     const CHECK_MASK_HAS_BODY = 0x10;
-
-    /**
-     * DB connection this model uses
-     *
-     * @var string
-     */
-    protected $connection = 'characters';
 
     /**
      * DB table this model uses

@@ -76,13 +76,22 @@ class User extends Authenticatable
     /**
      * Returns a collection of the Characters that belong to the account
      *
-     * @return Builder
+     * @return Collection
      */
     public function characters()
     {
-        (new Character)->iterateConnection('characters', function($connection) {
-            Character::connection($connection)->where();
-        });
+        $characters = new Collection;
+
+        // loop over realms
+        foreach ($this->realms() as $realm) {
+            // if the realm has characters, get them, else skip
+            if ($realm->numchars > 0) {
+                // add the characters to the collection
+                $characters->merge(Character::where('account', '=', $this->id)->setRealm($realm)->get());
+            }
+        }
+
+        return $characters;
     }
 
     /**

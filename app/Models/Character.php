@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Helpers\BelongsToRealm;
 use App\Helpers\Classes;
-use App\Helpers\MorphsConnections;
 use App\Helpers\Races;
 use App\User;
 use http\Exception\InvalidArgumentException;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class Character extends Model
 {
-    use MorphsConnections;
+    use BelongsToRealm;
 
     /**
      * Mapping of Race IDs to Race Names
@@ -55,12 +55,7 @@ class Character extends Model
         Classes::DEMON_HUNTER => 'Demon Hunter'
     ];
 
-    /**
-     * Connection that the model uses
-     *
-     * @var string
-     */
-    protected $connection = 'characters1';
+    const CONNECTION_BASE = 'characters';
 
     /**
      * Name of column that acts as the model's primary key
@@ -76,11 +71,6 @@ class Character extends Model
      */
     public $timestamps = false;
 
-    public function setRealm(int $realmID)
-    {
-        $this->setConnection("characters{$realmID}");
-    }
-
     /**
      * Returns the account the character belongs to
      *
@@ -88,7 +78,7 @@ class Character extends Model
      */
     public function account()
     {
-        return $this->belongsTo(User::class, 'account');
+        return User::where('id', '=', $this->account);
     }
 
     /**
@@ -186,6 +176,7 @@ class Character extends Model
         // characters can't really have multiple guilds
         // but the relationship follows the pattern
         return $this->belongsToMany(Guild::class, 'guild_member', 'guid', 'guildid', 'guid', 'guildid')
+            ->connection($this->getConnectionName())
             ->using(GuildMember::class)
             ->as('member');
     }
@@ -335,7 +326,7 @@ class Character extends Model
      */
     public function stats()
     {
-        return DB::connection($this->connection)->table('character_stats')->where('guid', '=', $this->guid)->first();
+        return DB::connection($this->getConnectionName())->table('character_stats')->where('guid', '=', $this->guid)->first();
     }
 
     /**

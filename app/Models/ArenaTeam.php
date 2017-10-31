@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Helpers\BelongsToRealm;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class ArenaTeam extends Model
 {
+    use BelongsToRealm;
+
     /**
      * Mapping of Arena Team Types to descriptions
      *
@@ -17,13 +20,6 @@ class ArenaTeam extends Model
         3 => '3v3',
         5 => '5v5'
     ];
-
-    /**
-     * Connection that the model uses
-     *
-     * @var string
-     */
-    protected $connection = 'characters';
 
     /**
      * Name of column that acts as the model's primary key

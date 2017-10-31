@@ -2,17 +2,13 @@
 
 namespace App\Models;
 
+use App\Helpers\BelongsToRealm;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class GuildMember extends Pivot
 {
-    /**
-     * Connection that the model uses
-     *
-     * @var string
-     */
-    protected $connection = 'characters';
+    use BelongsToRealm;
 
     /**
      * DB table that the model resides in

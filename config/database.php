@@ -49,11 +49,11 @@ return [
 
         'characters1' => [
           'driver' => 'mysql',
-          'host' => env('CHAR_DB_HOST', 'trinity-manager-mysql'),
-          'port' => env('CHAR_DB_PORT', '3306'),
-          'database' => env('CHAR_DB_DATABASE', 'characters'),
-          'username' => env('CHAR_DB_USERNAME', 'root'),
-          'password' => env('CHAR_DB_PASSWORD', 'trinity'),
+          'host' => env('CHAR_DB_HOST_1', 'trinity-manager-mysql'),
+          'port' => env('CHAR_DB_PORT_1', '3306'),
+          'database' => env('CHAR_DB_DATABASE_1', 'characters'),
+          'username' => env('CHAR_DB_USERNAME_1', 'root'),
+          'password' => env('CHAR_DB_PASSWORD_1', 'trinity'),
           'unix_socket' => env('DB_SOCKET', ''),
           'charset' => 'utf8mb4',
           'collation' => 'utf8mb4_unicode_ci',

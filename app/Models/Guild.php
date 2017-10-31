@@ -2,19 +2,14 @@
 
 namespace App\Models;
 
+use App\Helpers\BelongsToRealm;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 
 class Guild extends Model
 {
-    /**
-     * Connection that the model uses
-     *
-     * @var string
-     */
-    protected $connection = 'characters';
+    use BelongsToRealm;
 
     /**
      * DB table that the model resides in
