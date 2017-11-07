@@ -34,6 +34,7 @@ class User extends Authenticatable
      * @var bool
      */
     public $timestamps = false;
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -113,5 +114,47 @@ class User extends Authenticatable
     public function securityLevels()
     {
         return SecurityLevel::where('id', '=', $this->id);
+    }
+
+    public function isModerator(int $realmID = null)
+    {
+        return $this->hasSecurityLevel(['level' => SecurityLevel::LEVEL_MODERATOR, 'realm' => $realmID]);
+    }
+
+    public function isGM(int $realmID = null)
+    {
+        return $this->hasSecurityLevel(['level' => SecurityLevel::LEVEL_GM, 'realm' => $realmID]);
+    }
+
+    public function isAdmin(int $realmID = null)
+    {
+        return $this->hasSecurityLevel(['level' => SecurityLevel::LEVEL_ADMIN, 'realm' => $realmID]);
+    }
+
+    public function hasSecurityLevel(array $filters = [])
+    {
+        $defaultFilters = [
+            'level' => SecurityLevel::LEVEL_PLAYER,
+            'realm' => SecurityLevel::ALL_REALMS
+        ];
+
+        $filters = array_merge($defaultFilters, $filters);
+
+        $secLevels = $this->securityLevels()->get();
+        foreach ($secLevels as $secLevel) {
+            if ($secLevel->gmlevel >= $filters['level'] && (
+                $secLevel->RealmID == $filters['realm'] ||
+                $secLevel->RealmID == SecurityLevel::ALL_REALMS)) {
+
+                return true;
+            }
+        }
+
+        // default permission is player and will have no row
+        if ($filters['level'] === SecurityLevel::LEVEL_PLAYER) {
+            return true;
+        }
+
+        return false;
     }
 }

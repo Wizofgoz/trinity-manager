@@ -18,3 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/2fa/enable', 'Google2FAController@enableTwoFactor');
+Route::get('/2fa/disable', 'Google2FAController@disableTwoFactor');
+Route::get('/2fa/validate', 'Auth\AuthController@getValidateToken');
+Route::post('/2fa/validate', ['middleware' => 'throttle:5', 'uses' => 'Auth\LoginController@postValidateToken']);
+
+Route::get('/account/email/verify', 'AccountController@verifyEmail')->name('account.verify');
+Route::middleware('auth')->group(function () {
+    Route::get('/account', 'AccountController@index')->name('account.show');
+    Route::put('/account', 'AccountController@store')->name('account.update');
+});

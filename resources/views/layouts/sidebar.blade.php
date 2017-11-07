@@ -10,13 +10,13 @@
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
                 <i class="glyphicon glyphicon-home"></i>
-                Home
+                Dashboard
             </a>
         </li>
         <li>
             <a href="#">
                 <i class="glyphicon glyphicon-briefcase"></i>
-                About
+                Monitoring
             </a>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
                 <i class="glyphicon glyphicon-duplicate"></i>
@@ -31,13 +31,13 @@
         <li>
             <a href="#">
                 <i class="glyphicon glyphicon-link"></i>
-                Portfolio
+                Characters
             </a>
         </li>
         <li>
             <a href="#">
                 <i class="glyphicon glyphicon-send"></i>
-                Contact
+                Realms
             </a>
         </li>
     </ul>

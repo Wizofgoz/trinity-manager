@@ -11,7 +11,6 @@ namespace App\Providers;
 use App\User;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Support\Str;
-use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 

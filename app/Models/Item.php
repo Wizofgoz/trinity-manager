@@ -8,9 +8,56 @@ use App\Helpers\ItemFlags;
 use App\Helpers\ItemQuality;
 use App\Helpers\Races;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Item extends Model
 {
+    const FLAGS = [
+        ItemFlags::UNK1 => 'Unknown (1)',
+        ItemFlags::CONJURED => 'Conjured',
+        ItemFlags::OPENABLE => 'Openable',
+        ItemFlags::HEROIC_TEXT => 'Heroic Text',
+        ItemFlags::DEPRECIATED => 'Depreciated',
+        ItemFlags::HARD_DESTROY => 'Hard Destroy',
+        ItemFlags::UNK2 => 'Unknown (2)',
+        ItemFlags::NO_COOLDOWN => 'No Cooldown',
+        ItemFlags::UNK3 => 'Unknown (3)',
+        ItemFlags::PARTY_LOOT => 'Party Loot',
+        ItemFlags::REFUNDABLE => 'Refundable',
+        ItemFlags::CHARTER => 'Charter',
+        ItemFlags::UNK5 => 'Unknown (5)',
+        ItemFlags::UNK6 => 'Unknown (6)',
+        ItemFlags::UNK7 => 'Unknown (7)',
+        ItemFlags::UNK8 => 'Unknown (8)',
+        ItemFlags::PROSPECTABLE => 'Prospectable',
+        ItemFlags::UNIQUE_EQUIPPED => 'Unique Equipped',
+        ItemFlags::UNK9 => 'Unknown (9)',
+        ItemFlags::ARENA_MATCH_USABLE => 'Arena Match Usable',
+        ItemFlags::THROWABLE => 'Throwable',
+        ItemFlags::SHAPESHIFT_USABLE => 'Shapeshift Usable',
+        ItemFlags::UNK10 => 'Unknown (10)',
+        ItemFlags::PROFESSION_LOOT_FILTER => 'Profession Loot Filter',
+        ItemFlags::ARENA_NOT_USABLE => 'Arena Not Usable',
+        ItemFlags::BIND_TO_ACCOUNT => 'Bind To Account',
+        ItemFlags::SPELL_CAST_ON_TRIGGER => 'Spell Cast On Trigger',
+        ItemFlags::MILLABLE => 'Millable',
+        ItemFlags::UNK11 => 'Unknown (11)',
+        ItemFlags::BIND_ON_PICKUP_TRADEABLE => 'Bind On Pickup Tradeable'
+    ];
+
+    const FLAGS_EXTRA = [
+        ItemFlags::HORDE_ONLY => 'Horde Only',
+        ItemFlags::ALLIANCE_ONLY => 'Alliance Only',
+        ItemFlags::EXTENDED_COST_GOLD_REQUIRED => 'Extended Cost Gold Required',
+        ItemFlags::NEED_ROLL_DISABLED1 => 'Need Roll Disabled 1',
+        ItemFlags::NEED_ROLL_DISABLED2 => 'Need Roll Disabled 2',
+        ItemFlags::HAS_NORMAL_PRICE => 'Has Normal Price',
+        ItemFlags::BNET_ACCOUNT_BOUND => 'BattleNet Account Bound',
+        ItemFlags::CANNOT_BE_TRANSMOG => 'Cannot Be Transmog',
+        ItemFlags::CANNOT_TRANSMOG => 'Cannot Transmog',
+        ItemFlags::CAN_TRANSMOG => 'Can Transmog'
+    ];
+
     protected $connection = 'world';
 
     protected $table = 'item_template';
@@ -50,83 +97,33 @@ class Item extends Model
     }
 
     /**
-     * Whether the item is conjured
+     * Whether the item has the given flag
      *
+     * @param int $flag
      * @return bool
      */
-    public function isConjured()
+    public function hasFlag(int $flag)
     {
-        return $this->Flags & ItemFlags::CONJURED;
+        if (!Arr::exists(self::FLAGS, $flag)) {
+            throw new \InvalidArgumentException('Invalid flag given');
+        }
+
+        return $this->Flags & $flag;
     }
 
     /**
-     * Whether the item shows heroic text
+     * Whether the item has the given extra flag
      *
+     * @param int $flag
      * @return bool
      */
-    public function showsHeroicText()
+    public function hasExtraFlag(int $flag)
     {
-        return $this->Flags & ItemFlags::HEROIC_TEXT;
-    }
+        if (!Arr::exists(self::FLAGS_EXTRA, $flag)) {
+            throw new \InvalidArgumentException('Invalid flag given');
+        }
 
-    /**
-     * Whether the item can be prospected
-     *
-     * @return bool
-     */
-    public function isProspectable()
-    {
-        return $this->Flags & ItemFlags::PROSPECTABLE;
-    }
-
-    /**
-     * Whether the item can be milled
-     *
-     * @return bool
-     */
-    public function isMillable()
-    {
-        return $this->Flags & ItemFlags::MILLABLE;
-    }
-
-    /**
-     * Whether the item is unique-equipped
-     *
-     * @return bool
-     */
-    public function isUnique()
-    {
-        return $this->Flags & ItemFlags::UNIQUE_EQUIPPED;
-    }
-
-    /**
-     * Whether the item binds to account on equip
-     *
-     * @return bool
-     */
-    public function bindsToAccount()
-    {
-        return $this->Flags & ItemFlags::BIND_TO_ACCOUNT;
-    }
-
-    /**
-     * Whether the item is only usable by Horde characters
-     *
-     * @return bool
-     */
-    public function isHordeOnly()
-    {
-        return $this->FlagsExtra & ItemFlags::HORDE_ONLY;
-    }
-
-    /**
-     * Whether the item is only usable by Alliance characters
-     *
-     * @return bool
-     */
-    public function isAllianceOnly()
-    {
-        return $this->FlagsExtra & ItemFlags::ALLIANCE_ONLY;
+        return $this->FlagsExtra & $flag;
     }
 
     /**
@@ -136,7 +133,7 @@ class Item extends Model
      */
     public function isFactionSpecific()
     {
-        return ($this->isHordeOnly() || $this->isAllianceOnly());
+        return ($this->hasExtraFlag(ItemFlags::HORDE_ONLY) || $this->hasExtraFlag(ItemFlags::ALLIANCE_ONLY));
     }
 
     /**
@@ -156,7 +153,7 @@ class Item extends Model
      */
     public function isRaceSpecific()
     {
-        return ($this->AllowableRace == Races::ALL);
+        return ($this->AllowableRace != Races::ALL);
     }
 
     /**
@@ -166,7 +163,7 @@ class Item extends Model
      */
     public function isClassSpecific()
     {
-        return ($this->AllowableClass == Classes::ALL);
+        return ($this->AllowableClass != Classes::ALL);
     }
 
     /**

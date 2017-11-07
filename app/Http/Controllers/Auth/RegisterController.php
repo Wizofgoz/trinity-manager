@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Realm;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Extensions\SHA1Hasher;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -37,6 +40,8 @@ class RegisterController extends Controller
 
     /**
      * Create a new controller instance.
+     *
+     * @param $hasher SHA1Hasher
      *
      * @return void
      */
@@ -75,5 +80,24 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'sha_pass_hash' => $this->hasher->make($data['username'] . ":" . $data['password']),
         ]);
+    }
+
+    /**
+     * Once the user is registered, handle any post-registration steps
+     *
+     * @param Request $request
+     * @param $user
+     */
+    protected function registered(Request $request, $user)
+    {
+        // insert realmcharacters entries
+        $realms = Realm::all();
+        foreach ($realms as $realm) {
+            DB::connection('auth')->table('realmcharacters')->insert([
+                'realmid' => $realm->id,
+                'acctid' => $user->id,
+                'numchars' => 0
+            ]);
+        }
     }
 }

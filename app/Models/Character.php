@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\BelongsToRealm;
+use App\Helpers\CharacterFlags;
 use App\Helpers\Classes;
 use App\Helpers\Races;
 use App\User;
@@ -53,6 +54,35 @@ class Character extends Model
         Classes::MONK => 'Monk',
         Classes::DRUID => 'Druid',
         Classes::DEMON_HUNTER => 'Demon Hunter'
+    ];
+
+    const FLAGS = [
+        CharacterFlags::GROUP_LEADER => 'Group Leader',
+        CharacterFlags::IS_AFK => 'AFK',
+        CharacterFlags::IS_DO_NOT_DISTURB => 'Do Not Disturb',
+        CharacterFlags::IS_GM => 'GM',
+        CharacterFlags::IS_GHOST => 'Ghost',
+        CharacterFlags::IS_RESTING => 'Resting',
+        CharacterFlags::UNKNOWN7 => 'Unknown (7)',
+        CharacterFlags::UNKNOWN8 => 'Unknown (8)',
+        CharacterFlags::IS_CONTESTED_PVP => 'Contested PVP',
+        CharacterFlags::IS_IN_PVP => 'In PVP',
+        CharacterFlags::IS_HELM_HIDDEN => 'Hide Helm',
+        CharacterFlags::IS_CLOAK_HIDDEN => 'Cloak Hidden',
+        CharacterFlags::HAS_PLAYED_LONG_TIME => 'Played Long Time',
+        CharacterFlags::HAS_PLAYED_TOO_LONG => 'Played Too Long',
+        CharacterFlags::IS_OUT_OF_BOUNDS => 'Out Of Bounds',
+        CharacterFlags::IS_DEVELOPER => 'Developer',
+        CharacterFlags::UNKNOWN17 => 'Unknown (17)',
+        CharacterFlags::IN_TAXI_BENCHMARK_MODE => 'Taxi Benchmark',
+        CharacterFlags::IS_PVP_TIMER_ACTIVE => 'PVP Timer Active',
+        CharacterFlags::UNKNOWN20 => 'Unknown (20)',
+        CharacterFlags::UNKNOWN21 => 'Unknown (21)',
+        CharacterFlags::UNKNOWN22 => 'Unknown (22)',
+        CharacterFlags::IS_COMMENTATOR => 'Commentator',
+        CharacterFlags::ALLOW_ONLY_ABILITY => 'Allow Only Ablility',
+        CharacterFlags::UNKNOWN25 => 'Unknown (25)',
+        CharacterFlags::CANNOT_GAIN_XP => 'No XP Gain'
     ];
 
     const CONNECTION_BASE = 'characters';
@@ -357,5 +387,38 @@ class Character extends Model
     public function sentMail()
     {
         return $this->hasMany(Mail::class, 'sender', 'guid');
+    }
+
+    /**
+     * Returns array of stringified flags the character has assigned
+     *
+     * @return array
+     */
+    public function flags()
+    {
+        $flags = [];
+
+        foreach (self::FLAGS as $value => $string) {
+            if ($this->playerFlags & $value) {
+                $flags[] = $string;
+            }
+        }
+
+        return $flags;
+    }
+
+    /**
+     * Whether or not the character has a given flag
+     *
+     * @param int $flag
+     * @return int
+     */
+    public function hasFlag(int $flag)
+    {
+        if (!Arr::exists(self::FLAGS, $flag)) {
+            throw new \InvalidArgumentException('Invalid flag given');
+        }
+
+        return $this->playerFlags & $flag;
     }
 }
