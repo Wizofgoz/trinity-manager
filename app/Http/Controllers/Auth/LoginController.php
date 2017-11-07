@@ -39,7 +39,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Returns the column name of the identifier
+     * Returns the column name of the identifier.
      *
      * @return string
      */
@@ -59,7 +59,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Forces the session to save (hopefully
+     * Forces the session to save (hopefully.
      *
      * @param Request $request
      * @param $user
@@ -82,7 +82,6 @@ class LoginController extends Controller
     }
 
     /**
-     *
      * @return \Illuminate\Http\Response
      */
     public function getValidateToken()
@@ -95,15 +94,15 @@ class LoginController extends Controller
     }
 
     /**
+     * @param ValidateSecretRequest $request
      *
-     * @param  ValidateSecretRequest $request
      * @return \Illuminate\Http\Response
      */
     public function postValidateToken(ValidateSecretRequest $request)
     {
         //get user id and create cache key
         $userId = $request->session()->pull('2fa:user:id');
-        $key    = $userId . ':' . $request->totp;
+        $key = $userId.':'.$request->totp;
 
         //use cache to store token to blacklist
         Cache::add($key, true, 4);

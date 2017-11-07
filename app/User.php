@@ -7,29 +7,29 @@ use App\Models\Realm;
 use App\Models\SecurityLevel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
     /**
-     * DB connection that the model uses
+     * DB connection that the model uses.
      *
      * @var string
      */
     protected $connection = 'auth';
 
     /**
-     * DB table that the model resides in
+     * DB table that the model resides in.
      *
      * @var string
      */
     protected $table = 'account';
 
     /**
-     * Whether the model contains standard timestamp columns
+     * Whether the model contains standard timestamp columns.
      *
      * @var bool
      */
@@ -55,7 +55,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Returns the password hash for the model
+     * Returns the password hash for the model.
      *
      * @return string
      */
@@ -65,7 +65,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Returns the identifier for the model
+     * Returns the identifier for the model.
      *
      * @return string
      */
@@ -75,13 +75,13 @@ class User extends Authenticatable
     }
 
     /**
-     * Returns a collection of the Characters that belong to the account
+     * Returns a collection of the Characters that belong to the account.
      *
      * @return Collection
      */
     public function characters()
     {
-        $characters = new Collection;
+        $characters = new Collection();
 
         // loop over realms
         foreach ($this->realms() as $realm) {
@@ -96,7 +96,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Returns a collection of the realms that the account has characters on
+     * Returns a collection of the realms that the account has characters on.
      *
      * @return Builder
      */
@@ -107,7 +107,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Returns a collection of the realms that the account has security clearance on
+     * Returns a collection of the realms that the account has security clearance on.
      *
      * @return Builder
      */
@@ -135,7 +135,7 @@ class User extends Authenticatable
     {
         $defaultFilters = [
             'level' => SecurityLevel::LEVEL_PLAYER,
-            'realm' => SecurityLevel::ALL_REALMS
+            'realm' => SecurityLevel::ALL_REALMS,
         ];
 
         $filters = array_merge($defaultFilters, $filters);
@@ -145,7 +145,6 @@ class User extends Authenticatable
             if ($secLevel->gmlevel >= $filters['level'] && (
                 $secLevel->RealmID == $filters['realm'] ||
                 $secLevel->RealmID == SecurityLevel::ALL_REALMS)) {
-
                 return true;
             }
         }

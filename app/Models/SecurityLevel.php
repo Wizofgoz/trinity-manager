@@ -19,28 +19,28 @@ class SecurityLevel extends Model
     const LEVEL_ADMIN = 3;
 
     /**
-     * Connection that the model uses
+     * Connection that the model uses.
      *
      * @var string
      */
     protected $connection = 'auth';
 
     /**
-     * DB table that the model resides in
+     * DB table that the model resides in.
      *
      * @var string
      */
     protected $table = 'account_access';
 
     /**
-     * Whether the model contains standard timestamp columns
+     * Whether the model contains standard timestamp columns.
      *
      * @var bool
      */
     public $timestamps = false;
 
     /**
-     * Returns all realms that the security level is available on
+     * Returns all realms that the security level is available on.
      *
      * @return Builder
      */
@@ -54,7 +54,7 @@ class SecurityLevel extends Model
     }
 
     /**
-     * Returns the account that owns this security level
+     * Returns the account that owns this security level.
      *
      * @return Builder
      */

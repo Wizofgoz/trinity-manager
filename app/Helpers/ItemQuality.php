@@ -5,47 +5,47 @@ namespace App\Helpers;
 class ItemQuality
 {
     /**
-     * Mapping of Quality IDs to colors and descriptions
+     * Mapping of Quality IDs to colors and descriptions.
      *
      * @var array
      */
     const QUALITY_MAP = [
         0 => [
-            'color' => 'grey',
-            'description' => 'Poor'
+            'color'       => 'grey',
+            'description' => 'Poor',
         ],
         1 => [
-            'color' => 'white',
-            'description' => 'Common'
+            'color'       => 'white',
+            'description' => 'Common',
         ],
         2 => [
-            'color' => 'green',
-            'description' => 'Uncommon'
+            'color'       => 'green',
+            'description' => 'Uncommon',
         ],
         3 => [
-            'color' => 'blue',
-            'description' => 'Rare'
+            'color'       => 'blue',
+            'description' => 'Rare',
         ],
         4 => [
-            'color' => 'purple',
-            'description' => 'Epic'
+            'color'       => 'purple',
+            'description' => 'Epic',
         ],
         5 => [
-            'color' => 'orange',
-            'description' => 'Legendary'
+            'color'       => 'orange',
+            'description' => 'Legendary',
         ],
         6 => [
-            'color' => 'red',
-            'description' => 'Artifact'
+            'color'       => 'red',
+            'description' => 'Artifact',
         ],
         7 => [
-            'color' => 'gold',
-            'description' => 'Heirloom'
-        ]
+            'color'       => 'gold',
+            'description' => 'Heirloom',
+        ],
     ];
 
     /**
-     * ID of the level of the Quality
+     * ID of the level of the Quality.
      *
      * @var int
      */
@@ -62,7 +62,7 @@ class ItemQuality
     }
 
     /**
-     * Returns the ID of the level of the Quality
+     * Returns the ID of the level of the Quality.
      *
      * @return int
      */
@@ -72,7 +72,7 @@ class ItemQuality
     }
 
     /**
-     * Returns the color of the Quality
+     * Returns the color of the Quality.
      *
      * @return string
      */
@@ -82,7 +82,7 @@ class ItemQuality
     }
 
     /**
-     * Returns the description of the Quality
+     * Returns the description of the Quality.
      *
      * @return string
      */

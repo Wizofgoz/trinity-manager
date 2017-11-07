@@ -3,16 +3,16 @@
  * Created by IntelliJ IDEA.
  * User: mac
  * Date: 10/16/17
- * Time: 11:36 AM
+ * Time: 11:36 AM.
  */
 
 namespace App\Providers;
 
 use App\User;
 use Illuminate\Auth\EloquentUserProvider;
-use Illuminate\Support\Str;
-use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
+use Illuminate\Contracts\Hashing\Hasher as HasherContract;
+use Illuminate\Support\Str;
 
 class TrinityCoreUserProvider extends EloquentUserProvider
 {
@@ -33,8 +33,9 @@ class TrinityCoreUserProvider extends EloquentUserProvider
     /**
      * Create a new database user provider.
      *
-     * @param  HasherContract  $hasher
-     * @param  string  $model
+     * @param HasherContract $hasher
+     * @param string         $model
+     *
      * @return void
      */
     public function __construct(HasherContract $hasher, $model)
@@ -46,7 +47,8 @@ class TrinityCoreUserProvider extends EloquentUserProvider
     /**
      * Retrieve a user by their unique identifier.
      *
-     * @param  mixed  $identifier
+     * @param mixed $identifier
+     *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function retrieveById($identifier)
@@ -57,13 +59,15 @@ class TrinityCoreUserProvider extends EloquentUserProvider
     /**
      * Retrieve a user by their unique identifier and "remember me" token.
      *
-     * @param  mixed  $identifier
-     * @param  string  $token
+     * @param mixed  $identifier
+     * @param string $token
+     *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function retrieveByToken($identifier, $token)
     {
         $model = $this->createModel();
+
         return $model->newQuery()
           ->where($model->getAuthIdentifierName(), $identifier)
           ->where($model->getRememberTokenName(), $token)
@@ -73,8 +77,9 @@ class TrinityCoreUserProvider extends EloquentUserProvider
     /**
      * Update the "remember me" token for the given user in storage.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
-     * @param  string  $token
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     * @param string                                     $token
+     *
      * @return void
      */
     public function updateRememberToken(UserContract $user, $token)
@@ -86,7 +91,8 @@ class TrinityCoreUserProvider extends EloquentUserProvider
     /**
      * Retrieve a user by the given credentials.
      *
-     * @param  array  $credentials
+     * @param array $credentials
+     *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function retrieveByCredentials(array $credentials)
@@ -99,23 +105,26 @@ class TrinityCoreUserProvider extends EloquentUserProvider
         // Eloquent User "model" that will be utilized by the Guard instances.
         $query = $this->createModel()->newQuery();
         foreach ($credentials as $key => $value) {
-            if (! Str::contains($key, 'password')) {
+            if (!Str::contains($key, 'password')) {
                 $query->where($key, Str::upper($value));
             }
         }
+
         return $query->first();
     }
 
     /**
      * Validate a user against the given credentials.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
-     * @param  array  $credentials
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     * @param array                                      $credentials
+     *
      * @return bool
      */
     public function validateCredentials(UserContract $user, array $credentials)
     {
-        $plain = $credentials['username'] . ":" . $credentials['password'];
+        $plain = $credentials['username'].':'.$credentials['password'];
+
         return $this->hasher->check($plain, $user->getAuthPassword());
     }
 
@@ -127,7 +136,8 @@ class TrinityCoreUserProvider extends EloquentUserProvider
     public function createModel()
     {
         $class = '\\'.ltrim($this->model, '\\');
-        return new $class;
+
+        return new $class();
     }
 
     /**
@@ -143,12 +153,14 @@ class TrinityCoreUserProvider extends EloquentUserProvider
     /**
      * Sets the hasher implementation.
      *
-     * @param  HasherContract  $hasher
+     * @param HasherContract $hasher
+     *
      * @return $this
      */
     public function setHasher(HasherContract $hasher)
     {
         $this->hasher = $hasher;
+
         return $this;
     }
 
@@ -165,12 +177,14 @@ class TrinityCoreUserProvider extends EloquentUserProvider
     /**
      * Sets the name of the Eloquent user model.
      *
-     * @param  string  $model
+     * @param string $model
+     *
      * @return $this
      */
     public function setModel($model)
     {
         $this->model = $model;
+
         return $this;
     }
 }

@@ -11,21 +11,21 @@ class ItemInstance extends Model
     use BelongsToRealm;
 
     /**
-     * DB table that the model resides in
+     * DB table that the model resides in.
      *
      * @var string
      */
     protected $table = 'item_instance';
 
     /**
-     * Name of column that acts as the model's primary key
+     * Name of column that acts as the model's primary key.
      *
      * @var string
      */
     protected $primaryKey = 'guid';
 
     /**
-     * Defines the relation between the item instance and the character that owns it
+     * Defines the relation between the item instance and the character that owns it.
      *
      * @return Builder
      */
@@ -35,7 +35,7 @@ class ItemInstance extends Model
     }
 
     /**
-     * Defines the relation between the item instance and the character that created it
+     * Defines the relation between the item instance and the character that created it.
      *
      * @return Builder
      */
@@ -45,7 +45,7 @@ class ItemInstance extends Model
     }
 
     /**
-     * Defines the relation between the item instance and the character that gifted it
+     * Defines the relation between the item instance and the character that gifted it.
      *
      * @return Builder
      */
@@ -55,7 +55,7 @@ class ItemInstance extends Model
     }
 
     /**
-     * Returns the item template the item instance belongs to
+     * Returns the item template the item instance belongs to.
      *
      * @return Item
      */
@@ -65,7 +65,7 @@ class ItemInstance extends Model
     }
 
     /**
-     * Returns whether the item instance is a stack of items
+     * Returns whether the item instance is a stack of items.
      *
      * @return bool
      */

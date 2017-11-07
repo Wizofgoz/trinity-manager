@@ -11,39 +11,39 @@ class ArenaTeam extends Model
     use BelongsToRealm;
 
     /**
-     * Mapping of Arena Team Types to descriptions
+     * Mapping of Arena Team Types to descriptions.
      *
      * @var array
      */
     const TYPES = [
         2 => '2v2',
         3 => '3v3',
-        5 => '5v5'
+        5 => '5v5',
     ];
 
     /**
-     * Name of column that acts as the model's primary key
+     * Name of column that acts as the model's primary key.
      *
      * @var string
      */
     protected $table = 'arena_team';
 
     /**
-     * Whether the model contains standard timestamp columns
+     * Whether the model contains standard timestamp columns.
      *
      * @var bool
      */
     public $timestamps = false;
 
     /**
-     * Name of column that acts as the model's primary key
+     * Name of column that acts as the model's primary key.
      *
      * @var string
      */
     protected $primaryKey = 'arenaTeamId';
 
     /**
-     * Returns the character that is the captain of the arena team
+     * Returns the character that is the captain of the arena team.
      *
      * @return Builder
      */
@@ -53,7 +53,7 @@ class ArenaTeam extends Model
     }
 
     /**
-     * Returns all characters that are members of the arena team
+     * Returns all characters that are members of the arena team.
      *
      * @return Builder
      */

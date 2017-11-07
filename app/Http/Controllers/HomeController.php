@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Realm;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -28,8 +26,8 @@ class HomeController extends Controller
         $characters = $account->characters();
 
         return view('home', [
-          'realms' => $realms,
-          'characters' => $characters
+          'realms'     => $realms,
+          'characters' => $characters,
         ]);
     }
 }

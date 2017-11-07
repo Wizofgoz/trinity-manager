@@ -11,21 +11,21 @@ class GuildMember extends Pivot
     use BelongsToRealm;
 
     /**
-     * DB table that the model resides in
+     * DB table that the model resides in.
      *
      * @var string
      */
     protected $table = 'guild_member';
 
     /**
-     * Whether the model contains standard timestamp columns
+     * Whether the model contains standard timestamp columns.
      *
      * @var bool
      */
     public $timestamps = false;
 
     /**
-     * Returns the Guild Rank of the member
+     * Returns the Guild Rank of the member.
      *
      * @return Builder
      */
@@ -36,7 +36,7 @@ class GuildMember extends Pivot
     }
 
     /**
-     * Returns the guild the member belongs to
+     * Returns the guild the member belongs to.
      *
      * @return Builder
      */
@@ -46,7 +46,7 @@ class GuildMember extends Pivot
     }
 
     /**
-     * Returns the Character the member is related to
+     * Returns the Character the member is related to.
      *
      * @return Builder
      */

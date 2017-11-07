@@ -8,37 +8,37 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class InventoryItem extends Pivot
 {
     /**
-     * Constant that when bag attribute is equal to this, it is equipped somehow
+     * Constant that when bag attribute is equal to this, it is equipped somehow.
      *
      * @var int
      */
     const INVENTORY_EQUIPPED = 0;
 
     /**
-     * Mapping of equipment slots to names
+     * Mapping of equipment slots to names.
      *
      * @var array
      */
     const SLOT_TYPES_EQUIPPED = [
-        'Head' => 0,
-        'Neck' => 1,
+        'Head'      => 0,
+        'Neck'      => 1,
         'Shoulders' => 2,
-        'Body' => 3,
-        'Chest' => 4,
-        'Waist' => 5,
-        'Legs' => 6,
-        'Feet' => 7,
-        'Wrists' => 8,
-        'Hands' => 9,
-        'Finger1' => 10,
-        'Finger2' => 11,
-        'Trinket1' => 12,
-        'Trinket2' => 13,
-        'Back' => 14,
+        'Body'      => 3,
+        'Chest'     => 4,
+        'Waist'     => 5,
+        'Legs'      => 6,
+        'Feet'      => 7,
+        'Wrists'    => 8,
+        'Hands'     => 9,
+        'Finger1'   => 10,
+        'Finger2'   => 11,
+        'Trinket1'  => 12,
+        'Trinket2'  => 13,
+        'Back'      => 14,
         'Main-Hand' => 15,
-        'Off-Hand' => 16,
-        'Ranged' => 17,
-        'Tabard' => 18
+        'Off-Hand'  => 16,
+        'Ranged'    => 17,
+        'Tabard'    => 18,
     ];
 
     /**
@@ -58,7 +58,7 @@ class InventoryItem extends Pivot
     }
 
     /**
-     * Defines relation between the Inventory Item and an Item Instance
+     * Defines relation between the Inventory Item and an Item Instance.
      *
      * @return Builder
      */
@@ -67,15 +67,15 @@ class InventoryItem extends Pivot
         return $this->belongsTo(ItemInstance::class, 'item', 'guid');
     }
 
-  /**
-   * Defines relation between the Inventory Item and the Item Instance of the bag it is placed in
-   *
-   * @return Builder|null
-   */
+    /**
+     * Defines relation between the Inventory Item and the Item Instance of the bag it is placed in.
+     *
+     * @return Builder|null
+     */
     public function bagInstance()
     {
         if ($this->bag == 0) {
-            return null;
+            return;
         }
 
         return $this->belongsTo(ItemInstance::class, 'bag', 'guid');

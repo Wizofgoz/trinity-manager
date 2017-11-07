@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Extensions\SHA1Hasher;
+use App\Http\Controllers\Controller;
 use App\Models\Realm;
 use App\User;
-use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use App\Extensions\SHA1Hasher;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -34,7 +34,7 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
-     * @var SHA1Hasher $hasher
+     * @var SHA1Hasher
      */
     private $hasher;
 
@@ -55,14 +55,15 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'username' => 'required|string|max:255|unique:auth.account',
-            'email' => 'required|string|email|max:255|unique:auth.account',
+            'email'    => 'required|string|email|max:255|unique:auth.account',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -70,20 +71,21 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \App\User
      */
     protected function create(array $data)
     {
         return User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'sha_pass_hash' => $this->hasher->make($data['username'] . ":" . $data['password']),
+            'username'      => $data['username'],
+            'email'         => $data['email'],
+            'sha_pass_hash' => $this->hasher->make($data['username'].':'.$data['password']),
         ]);
     }
 
     /**
-     * Once the user is registered, handle any post-registration steps
+     * Once the user is registered, handle any post-registration steps.
      *
      * @param Request $request
      * @param $user
@@ -94,9 +96,9 @@ class RegisterController extends Controller
         $realms = Realm::all();
         foreach ($realms as $realm) {
             DB::connection('auth')->table('realmcharacters')->insert([
-                'realmid' => $realm->id,
-                'acctid' => $user->id,
-                'numchars' => 0
+                'realmid'  => $realm->id,
+                'acctid'   => $user->id,
+                'numchars' => 0,
             ]);
         }
     }

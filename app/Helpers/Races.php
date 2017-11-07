@@ -31,9 +31,9 @@ abstract class Races
     const PANDAREN_ALLIANCE = 25;
     const PANDAREN_HORDE = 26;
     const NAMES = [
-        self::HUMAN => 'Human',
-        self::ORC => 'Orc',
-        self::DWARF => 'Dwarf',
-        self::NIGHT_ELF => 'Night Elf'
+        self::HUMAN     => 'Human',
+        self::ORC       => 'Orc',
+        self::DWARF     => 'Dwarf',
+        self::NIGHT_ELF => 'Night Elf',
     ];
 }

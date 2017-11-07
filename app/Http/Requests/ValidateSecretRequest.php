@@ -13,7 +13,6 @@ use PragmaRX\Google2FA\Google2FA;
 class ValidateSecretRequest extends Request
 {
     /**
-     *
      * @var \App\User
      */
     private $user;
@@ -22,6 +21,7 @@ class ValidateSecretRequest extends Request
      * Create a new FormRequest instance.
      *
      * @param \Illuminate\Validation\Factory $factory
+     *
      * @return void
      */
     public function __construct(ValidationFactory $factory)
@@ -31,7 +31,7 @@ class ValidateSecretRequest extends Request
             function ($attribute, $value, $parameters, $validator) {
                 $secret = Crypt::decrypt($this->user->token_key);
 
-                return (new Google2FA)->verifyKey($secret, $value);
+                return (new Google2FA())->verifyKey($secret, $value);
             },
             'Not a valid token'
         );
@@ -39,7 +39,7 @@ class ValidateSecretRequest extends Request
         $factory->extend(
             'used_token',
             function ($attribute, $value, $parameters, $validator) {
-                $key = $this->user->id . ':' . $value;
+                $key = $this->user->id.':'.$value;
 
                 return !Cache::has($key);
             },
