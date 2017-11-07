@@ -11,28 +11,28 @@ class GuildRank extends Pivot
     use BelongsToRealm;
 
     /**
-     * DB table that the model resides in
+     * DB table that the model resides in.
      *
      * @var string
      */
     protected $table = 'guild_rank';
 
     /**
-     * Whether the model contains standard timestamp columns
+     * Whether the model contains standard timestamp columns.
      *
      * @var bool
      */
     public $timestamps = false;
 
     /**
-     * Name of column that acts as the model's primary key
+     * Name of column that acts as the model's primary key.
      *
      * @var string
      */
     protected $primaryKey = 'rid';
 
     /**
-     * Returns the guild the rank belongs to
+     * Returns the guild the rank belongs to.
      *
      * @return Builder
      */
@@ -42,7 +42,7 @@ class GuildRank extends Pivot
     }
 
     /**
-     * Returns all members of the guild that have this rank assigned
+     * Returns all members of the guild that have this rank assigned.
      *
      * @return Builder
      */

@@ -18,91 +18,91 @@ class Character extends Model
     use BelongsToRealm;
 
     /**
-     * Mapping of Race IDs to Race Names
+     * Mapping of Race IDs to Race Names.
      *
      * @var array
      */
     const RACES = [
-        Races::HUMAN => 'Human',
-        Races::ORC => 'Orc',
-        Races::DWARF => 'Dwarf',
+        Races::HUMAN     => 'Human',
+        Races::ORC       => 'Orc',
+        Races::DWARF     => 'Dwarf',
         Races::NIGHT_ELF => 'Night Elf',
-        Races::UNDEAD => 'Undead',
-        Races::TAUREN => 'Tauren',
-        Races::GNOME => 'Gnome',
-        Races::TROLL => 'Troll',
-        Races::GOBLIN => 'Goblin',
+        Races::UNDEAD    => 'Undead',
+        Races::TAUREN    => 'Tauren',
+        Races::GNOME     => 'Gnome',
+        Races::TROLL     => 'Troll',
+        Races::GOBLIN    => 'Goblin',
         Races::BLOOD_ELF => 'Blood Elf',
-        Races::DRAENEI => 'Draenei',
+        Races::DRAENEI   => 'Draenei',
     ];
 
     /**
-     * Mapping of Class IDs to Class Names
+     * Mapping of Class IDs to Class Names.
      *
      * @var array
      */
     const CLASSES = [
-        Classes::WARRIOR => 'Warrior',
-        Classes::PALADIN => 'Paladin',
-        Classes::HUNTER => 'Hunter',
-        Classes::ROGUE => 'Rogue',
-        Classes::PRIEST => 'Priest',
+        Classes::WARRIOR      => 'Warrior',
+        Classes::PALADIN      => 'Paladin',
+        Classes::HUNTER       => 'Hunter',
+        Classes::ROGUE        => 'Rogue',
+        Classes::PRIEST       => 'Priest',
         Classes::DEATH_KNIGHT => 'Death Knight',
-        Classes::SHAMAN => 'Shaman',
-        Classes::MAGE => 'Mage',
-        Classes::WARLOCK => 'Warlock',
-        Classes::MONK => 'Monk',
-        Classes::DRUID => 'Druid',
-        Classes::DEMON_HUNTER => 'Demon Hunter'
+        Classes::SHAMAN       => 'Shaman',
+        Classes::MAGE         => 'Mage',
+        Classes::WARLOCK      => 'Warlock',
+        Classes::MONK         => 'Monk',
+        Classes::DRUID        => 'Druid',
+        Classes::DEMON_HUNTER => 'Demon Hunter',
     ];
 
     const FLAGS = [
-        CharacterFlags::GROUP_LEADER => 'Group Leader',
-        CharacterFlags::IS_AFK => 'AFK',
-        CharacterFlags::IS_DO_NOT_DISTURB => 'Do Not Disturb',
-        CharacterFlags::IS_GM => 'GM',
-        CharacterFlags::IS_GHOST => 'Ghost',
-        CharacterFlags::IS_RESTING => 'Resting',
-        CharacterFlags::UNKNOWN7 => 'Unknown (7)',
-        CharacterFlags::UNKNOWN8 => 'Unknown (8)',
-        CharacterFlags::IS_CONTESTED_PVP => 'Contested PVP',
-        CharacterFlags::IS_IN_PVP => 'In PVP',
-        CharacterFlags::IS_HELM_HIDDEN => 'Hide Helm',
-        CharacterFlags::IS_CLOAK_HIDDEN => 'Cloak Hidden',
-        CharacterFlags::HAS_PLAYED_LONG_TIME => 'Played Long Time',
-        CharacterFlags::HAS_PLAYED_TOO_LONG => 'Played Too Long',
-        CharacterFlags::IS_OUT_OF_BOUNDS => 'Out Of Bounds',
-        CharacterFlags::IS_DEVELOPER => 'Developer',
-        CharacterFlags::UNKNOWN17 => 'Unknown (17)',
+        CharacterFlags::GROUP_LEADER           => 'Group Leader',
+        CharacterFlags::IS_AFK                 => 'AFK',
+        CharacterFlags::IS_DO_NOT_DISTURB      => 'Do Not Disturb',
+        CharacterFlags::IS_GM                  => 'GM',
+        CharacterFlags::IS_GHOST               => 'Ghost',
+        CharacterFlags::IS_RESTING             => 'Resting',
+        CharacterFlags::UNKNOWN7               => 'Unknown (7)',
+        CharacterFlags::UNKNOWN8               => 'Unknown (8)',
+        CharacterFlags::IS_CONTESTED_PVP       => 'Contested PVP',
+        CharacterFlags::IS_IN_PVP              => 'In PVP',
+        CharacterFlags::IS_HELM_HIDDEN         => 'Hide Helm',
+        CharacterFlags::IS_CLOAK_HIDDEN        => 'Cloak Hidden',
+        CharacterFlags::HAS_PLAYED_LONG_TIME   => 'Played Long Time',
+        CharacterFlags::HAS_PLAYED_TOO_LONG    => 'Played Too Long',
+        CharacterFlags::IS_OUT_OF_BOUNDS       => 'Out Of Bounds',
+        CharacterFlags::IS_DEVELOPER           => 'Developer',
+        CharacterFlags::UNKNOWN17              => 'Unknown (17)',
         CharacterFlags::IN_TAXI_BENCHMARK_MODE => 'Taxi Benchmark',
-        CharacterFlags::IS_PVP_TIMER_ACTIVE => 'PVP Timer Active',
-        CharacterFlags::UNKNOWN20 => 'Unknown (20)',
-        CharacterFlags::UNKNOWN21 => 'Unknown (21)',
-        CharacterFlags::UNKNOWN22 => 'Unknown (22)',
-        CharacterFlags::IS_COMMENTATOR => 'Commentator',
-        CharacterFlags::ALLOW_ONLY_ABILITY => 'Allow Only Ablility',
-        CharacterFlags::UNKNOWN25 => 'Unknown (25)',
-        CharacterFlags::CANNOT_GAIN_XP => 'No XP Gain'
+        CharacterFlags::IS_PVP_TIMER_ACTIVE    => 'PVP Timer Active',
+        CharacterFlags::UNKNOWN20              => 'Unknown (20)',
+        CharacterFlags::UNKNOWN21              => 'Unknown (21)',
+        CharacterFlags::UNKNOWN22              => 'Unknown (22)',
+        CharacterFlags::IS_COMMENTATOR         => 'Commentator',
+        CharacterFlags::ALLOW_ONLY_ABILITY     => 'Allow Only Ablility',
+        CharacterFlags::UNKNOWN25              => 'Unknown (25)',
+        CharacterFlags::CANNOT_GAIN_XP         => 'No XP Gain',
     ];
 
     const CONNECTION_BASE = 'characters';
 
     /**
-     * Name of column that acts as the model's primary key
+     * Name of column that acts as the model's primary key.
      *
      * @var string
      */
     protected $primaryKey = 'guid';
 
     /**
-     * Whether the model contains standard timestamp columns
+     * Whether the model contains standard timestamp columns.
      *
      * @var bool
      */
     public $timestamps = false;
 
     /**
-     * Returns the account the character belongs to
+     * Returns the account the character belongs to.
      *
      * @return Builder
      */
@@ -112,7 +112,7 @@ class Character extends Model
     }
 
     /**
-     * Returns the race of the character
+     * Returns the race of the character.
      *
      * @return string
      */
@@ -122,7 +122,7 @@ class Character extends Model
     }
 
     /**
-     * Returns the class of the character
+     * Returns the class of the character.
      *
      * @return string
      */
@@ -132,7 +132,7 @@ class Character extends Model
     }
 
     /**
-     * Returns an array of the achievements the character has completed so far
+     * Returns an array of the achievements the character has completed so far.
      *
      * @return array
      */
@@ -147,7 +147,7 @@ class Character extends Model
 
         // pull out the achievement IDs
         foreach ($achieved as $row) {
-              $ids[] = $row->achievement;
+            $ids[] = $row->achievement;
         }
 
         // get achievement information for the retrieved IDs
@@ -165,7 +165,8 @@ class Character extends Model
     }
 
     /**
-     * TODO: finish implementing
+     * TODO: finish implementing.
+     *
      * @return array
      */
     public function achievementsInProgress()
@@ -179,7 +180,7 @@ class Character extends Model
 
         // pull out the criteria IDs
         foreach ($progressed as $row) {
-          $ids[] = $row->criteria;
+            $ids[] = $row->criteria;
         }
 
         // get achievement information for the retrieved IDs
@@ -187,17 +188,17 @@ class Character extends Model
 
         // merge the date achieved into the extended info
         foreach ($infos as $index => $info) {
-          $achievements[$index] = array_merge($achieved, $infos);
+            $achievements[$index] = array_merge($achieved, $infos);
         }
 
         // return the array sorted by date achieved
         return Arr::sort($achievements, function ($a, $b) {
-          return $a['date'] <=> $b['date'];
+            return $a['date'] <=> $b['date'];
         });
     }
 
     /**
-     * Returns the Guild that the Character belongs to
+     * Returns the Guild that the Character belongs to.
      *
      * @return Builder
      */
@@ -212,18 +213,19 @@ class Character extends Model
     }
 
     /**
-     * Returns the Character's rank in their guild
+     * Returns the Character's rank in their guild.
      *
      * @return Builder
      */
     public function guildRank()
     {
         $member = $this->guild()->first()->member;
+
         return $member->rank();
     }
 
     /**
-     * Defines relation between the character and the Arena Teams they are a part of
+     * Defines relation between the character and the Arena Teams they are a part of.
      *
      * @return Builder
      */
@@ -234,7 +236,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and items that are in their inventory (main backpack and bags)
+     * Defines relation between the character and items that are in their inventory (main backpack and bags).
      *
      * @return Builder
      */
@@ -255,9 +257,10 @@ class Character extends Model
 
     /**
      * Defines relation between the character and items that are equipped to their person
-     * Filterable by slot name
+     * Filterable by slot name.
      *
      * @param string|null $slot
+     *
      * @return Builder
      */
     public function equipped(string $slot = null)
@@ -280,7 +283,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and the bags that are assigned to inventory slots
+     * Defines relation between the character and the bags that are assigned to inventory slots.
      *
      * @return Builder
      */
@@ -294,7 +297,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and the items in their main bank tab
+     * Defines relation between the character and the items in their main bank tab.
      *
      * @return Builder
      */
@@ -308,7 +311,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and the bags that are assigned to bank slots
+     * Defines relation between the character and the bags that are assigned to bank slots.
      *
      * @return Builder
      */
@@ -322,7 +325,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and the keys they have on their keyring
+     * Defines relation between the character and the keys they have on their keyring.
      *
      * @return Builder
      */
@@ -336,7 +339,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and the currencies they are in possession of (Emblems, Marks, etc.)
+     * Defines relation between the character and the currencies they are in possession of (Emblems, Marks, etc.).
      *
      * @return Builder
      */
@@ -350,7 +353,7 @@ class Character extends Model
     }
 
     /**
-     * Returns StdClass object with character's stats
+     * Returns StdClass object with character's stats.
      *
      * @return \StdClass
      */
@@ -360,7 +363,7 @@ class Character extends Model
     }
 
     /**
-     * Returns StdClass object with xp needed for character to reach the next level
+     * Returns StdClass object with xp needed for character to reach the next level.
      *
      * @return \StdClass
      */
@@ -370,7 +373,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and any mail they have received
+     * Defines relation between the character and any mail they have received.
      *
      * @return Builder
      */
@@ -380,7 +383,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and any mail they have sent
+     * Defines relation between the character and any mail they have sent.
      *
      * @return Builder
      */
@@ -390,7 +393,7 @@ class Character extends Model
     }
 
     /**
-     * Returns array of stringified flags the character has assigned
+     * Returns array of stringified flags the character has assigned.
      *
      * @return array
      */
@@ -408,9 +411,10 @@ class Character extends Model
     }
 
     /**
-     * Whether or not the character has a given flag
+     * Whether or not the character has a given flag.
      *
      * @param int $flag
+     *
      * @return int
      */
     public function hasFlag(int $flag)

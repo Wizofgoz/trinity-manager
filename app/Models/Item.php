@@ -13,49 +13,49 @@ use Illuminate\Support\Arr;
 class Item extends Model
 {
     const FLAGS = [
-        ItemFlags::UNK1 => 'Unknown (1)',
-        ItemFlags::CONJURED => 'Conjured',
-        ItemFlags::OPENABLE => 'Openable',
-        ItemFlags::HEROIC_TEXT => 'Heroic Text',
-        ItemFlags::DEPRECIATED => 'Depreciated',
-        ItemFlags::HARD_DESTROY => 'Hard Destroy',
-        ItemFlags::UNK2 => 'Unknown (2)',
-        ItemFlags::NO_COOLDOWN => 'No Cooldown',
-        ItemFlags::UNK3 => 'Unknown (3)',
-        ItemFlags::PARTY_LOOT => 'Party Loot',
-        ItemFlags::REFUNDABLE => 'Refundable',
-        ItemFlags::CHARTER => 'Charter',
-        ItemFlags::UNK5 => 'Unknown (5)',
-        ItemFlags::UNK6 => 'Unknown (6)',
-        ItemFlags::UNK7 => 'Unknown (7)',
-        ItemFlags::UNK8 => 'Unknown (8)',
-        ItemFlags::PROSPECTABLE => 'Prospectable',
-        ItemFlags::UNIQUE_EQUIPPED => 'Unique Equipped',
-        ItemFlags::UNK9 => 'Unknown (9)',
-        ItemFlags::ARENA_MATCH_USABLE => 'Arena Match Usable',
-        ItemFlags::THROWABLE => 'Throwable',
-        ItemFlags::SHAPESHIFT_USABLE => 'Shapeshift Usable',
-        ItemFlags::UNK10 => 'Unknown (10)',
-        ItemFlags::PROFESSION_LOOT_FILTER => 'Profession Loot Filter',
-        ItemFlags::ARENA_NOT_USABLE => 'Arena Not Usable',
-        ItemFlags::BIND_TO_ACCOUNT => 'Bind To Account',
-        ItemFlags::SPELL_CAST_ON_TRIGGER => 'Spell Cast On Trigger',
-        ItemFlags::MILLABLE => 'Millable',
-        ItemFlags::UNK11 => 'Unknown (11)',
-        ItemFlags::BIND_ON_PICKUP_TRADEABLE => 'Bind On Pickup Tradeable'
+        ItemFlags::UNK1                     => 'Unknown (1)',
+        ItemFlags::CONJURED                 => 'Conjured',
+        ItemFlags::OPENABLE                 => 'Openable',
+        ItemFlags::HEROIC_TEXT              => 'Heroic Text',
+        ItemFlags::DEPRECIATED              => 'Depreciated',
+        ItemFlags::HARD_DESTROY             => 'Hard Destroy',
+        ItemFlags::UNK2                     => 'Unknown (2)',
+        ItemFlags::NO_COOLDOWN              => 'No Cooldown',
+        ItemFlags::UNK3                     => 'Unknown (3)',
+        ItemFlags::PARTY_LOOT               => 'Party Loot',
+        ItemFlags::REFUNDABLE               => 'Refundable',
+        ItemFlags::CHARTER                  => 'Charter',
+        ItemFlags::UNK5                     => 'Unknown (5)',
+        ItemFlags::UNK6                     => 'Unknown (6)',
+        ItemFlags::UNK7                     => 'Unknown (7)',
+        ItemFlags::UNK8                     => 'Unknown (8)',
+        ItemFlags::PROSPECTABLE             => 'Prospectable',
+        ItemFlags::UNIQUE_EQUIPPED          => 'Unique Equipped',
+        ItemFlags::UNK9                     => 'Unknown (9)',
+        ItemFlags::ARENA_MATCH_USABLE       => 'Arena Match Usable',
+        ItemFlags::THROWABLE                => 'Throwable',
+        ItemFlags::SHAPESHIFT_USABLE        => 'Shapeshift Usable',
+        ItemFlags::UNK10                    => 'Unknown (10)',
+        ItemFlags::PROFESSION_LOOT_FILTER   => 'Profession Loot Filter',
+        ItemFlags::ARENA_NOT_USABLE         => 'Arena Not Usable',
+        ItemFlags::BIND_TO_ACCOUNT          => 'Bind To Account',
+        ItemFlags::SPELL_CAST_ON_TRIGGER    => 'Spell Cast On Trigger',
+        ItemFlags::MILLABLE                 => 'Millable',
+        ItemFlags::UNK11                    => 'Unknown (11)',
+        ItemFlags::BIND_ON_PICKUP_TRADEABLE => 'Bind On Pickup Tradeable',
     ];
 
     const FLAGS_EXTRA = [
-        ItemFlags::HORDE_ONLY => 'Horde Only',
-        ItemFlags::ALLIANCE_ONLY => 'Alliance Only',
+        ItemFlags::HORDE_ONLY                  => 'Horde Only',
+        ItemFlags::ALLIANCE_ONLY               => 'Alliance Only',
         ItemFlags::EXTENDED_COST_GOLD_REQUIRED => 'Extended Cost Gold Required',
-        ItemFlags::NEED_ROLL_DISABLED1 => 'Need Roll Disabled 1',
-        ItemFlags::NEED_ROLL_DISABLED2 => 'Need Roll Disabled 2',
-        ItemFlags::HAS_NORMAL_PRICE => 'Has Normal Price',
-        ItemFlags::BNET_ACCOUNT_BOUND => 'BattleNet Account Bound',
-        ItemFlags::CANNOT_BE_TRANSMOG => 'Cannot Be Transmog',
-        ItemFlags::CANNOT_TRANSMOG => 'Cannot Transmog',
-        ItemFlags::CAN_TRANSMOG => 'Can Transmog'
+        ItemFlags::NEED_ROLL_DISABLED1         => 'Need Roll Disabled 1',
+        ItemFlags::NEED_ROLL_DISABLED2         => 'Need Roll Disabled 2',
+        ItemFlags::HAS_NORMAL_PRICE            => 'Has Normal Price',
+        ItemFlags::BNET_ACCOUNT_BOUND          => 'BattleNet Account Bound',
+        ItemFlags::CANNOT_BE_TRANSMOG          => 'Cannot Be Transmog',
+        ItemFlags::CANNOT_TRANSMOG             => 'Cannot Transmog',
+        ItemFlags::CAN_TRANSMOG                => 'Can Transmog',
     ];
 
     protected $connection = 'world';
@@ -69,7 +69,7 @@ class Item extends Model
     protected $qualityObj;
 
     /**
-     * Returns an ItemClass object with info about the Item's class and subclass
+     * Returns an ItemClass object with info about the Item's class and subclass.
      *
      * @return ItemClass
      */
@@ -83,7 +83,7 @@ class Item extends Model
     }
 
     /**
-     * Returns an ItemQuality object with info about the Item's quality
+     * Returns an ItemQuality object with info about the Item's quality.
      *
      * @return ItemQuality
      */
@@ -97,9 +97,10 @@ class Item extends Model
     }
 
     /**
-     * Whether the item has the given flag
+     * Whether the item has the given flag.
      *
      * @param int $flag
+     *
      * @return bool
      */
     public function hasFlag(int $flag)
@@ -112,9 +113,10 @@ class Item extends Model
     }
 
     /**
-     * Whether the item has the given extra flag
+     * Whether the item has the given extra flag.
      *
      * @param int $flag
+     *
      * @return bool
      */
     public function hasExtraFlag(int $flag)
@@ -127,47 +129,47 @@ class Item extends Model
     }
 
     /**
-     * Whether the item is only usable by a single faction
+     * Whether the item is only usable by a single faction.
      *
      * @return bool
      */
     public function isFactionSpecific()
     {
-        return ($this->hasExtraFlag(ItemFlags::HORDE_ONLY) || $this->hasExtraFlag(ItemFlags::ALLIANCE_ONLY));
+        return $this->hasExtraFlag(ItemFlags::HORDE_ONLY) || $this->hasExtraFlag(ItemFlags::ALLIANCE_ONLY);
     }
 
     /**
-     * Whether the item can be sold to a vendor
+     * Whether the item can be sold to a vendor.
      *
      * @return bool
      */
     public function canSellToVendor()
     {
-        return ($this->SellPrice != 0);
+        return $this->SellPrice != 0;
     }
 
     /**
-     * Whether the item has Racial restrictions
+     * Whether the item has Racial restrictions.
      *
      * @return bool
      */
     public function isRaceSpecific()
     {
-        return ($this->AllowableRace != Races::ALL);
+        return $this->AllowableRace != Races::ALL;
     }
 
     /**
-     * Whether the item has Class restrictions
+     * Whether the item has Class restrictions.
      *
      * @return bool
      */
     public function isClassSpecific()
     {
-        return ($this->AllowableClass != Classes::ALL);
+        return $this->AllowableClass != Classes::ALL;
     }
 
     /**
-     * Returns names of races allowed to use the item
+     * Returns names of races allowed to use the item.
      *
      * @return array
      */
@@ -180,7 +182,7 @@ class Item extends Model
             if ($this->AllowableRace == Races::ALL) {
                 $allowedRaces[] = Character::RACES[$value];
 
-            // if the AllowableRace includes the current race, add it
+                // if the AllowableRace includes the current race, add it
             } elseif ($this->AllowableRace & $value) {
                 $allowedRaces[] = Character::RACES[$value];
             }
@@ -190,7 +192,7 @@ class Item extends Model
     }
 
     /**
-     * Returns names of classes allowed to use the item
+     * Returns names of classes allowed to use the item.
      *
      * @return array
      */
@@ -203,7 +205,7 @@ class Item extends Model
             if ($this->AllowableClass == Races::ALL) {
                 $allowedClasses[] = Character::CLASSES[$value];
 
-            // if the AllowableClass includes the current race, add it
+                // if the AllowableClass includes the current race, add it
             } elseif ($this->AllowableClass & $value) {
                 $allowedClasses[] = Character::CLASSES[$value];
             }

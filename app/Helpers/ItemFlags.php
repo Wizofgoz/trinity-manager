@@ -28,7 +28,7 @@ abstract class ItemFlags
     const SHAPESHIFT_USABLE = 0x0800000;
     const UNK10 = 0x01000000;
     /**
-     * Can be looted only if requirements are met and recipe is not known
+     * Can be looted only if requirements are met and recipe is not known.
      */
     const PROFESSION_LOOT_FILTER = 0x02000000;
     const ARENA_NOT_USABLE = 0x04000000;

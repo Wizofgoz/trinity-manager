@@ -12,11 +12,11 @@ class Uptime extends Model
     public $timestamps = false;
     protected $primaryKey = 'realmid';
 
-  /**
-   * Returns the realm that the uptime object belongs to
-   *
-   * @return Builder
-   */
+    /**
+     * Returns the realm that the uptime object belongs to.
+     *
+     * @return Builder
+     */
     public function realm()
     {
         return $this->belongsTo(Realm::class, 'realmid');

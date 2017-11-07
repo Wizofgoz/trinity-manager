@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use App\Helpers\BelongsToRealm;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use \Illuminate\Database\Eloquent\Builder;
 
 class Mail extends Model
 {
     use BelongsToRealm;
 
     /**
-     * Mapping of mail types to descriptions
+     * Mapping of mail types to descriptions.
      *
      * @var array
      */
@@ -20,7 +20,7 @@ class Mail extends Model
         2 => 'Auction',
         3 => 'Creature',
         4 => 'Game Object',
-        5 => 'Item'
+        5 => 'Item',
     ];
 
     const CHECK_MASK_NONE = 0x00;
@@ -31,21 +31,21 @@ class Mail extends Model
     const CHECK_MASK_HAS_BODY = 0x10;
 
     /**
-     * DB table this model uses
+     * DB table this model uses.
      *
      * @var string
      */
     protected $table = 'mail';
 
     /**
-     * Whether the table contains standard timestamp fields
+     * Whether the table contains standard timestamp fields.
      *
      * @var bool
      */
     public $timestamps = false;
 
     /**
-     * Whether the mail has items attached to it
+     * Whether the mail has items attached to it.
      *
      * @return bool
      */
@@ -55,7 +55,7 @@ class Mail extends Model
     }
 
     /**
-     * Whether the mail requires the specified money to be paid to receive the attached items
+     * Whether the mail requires the specified money to be paid to receive the attached items.
      *
      * @return bool
      */
@@ -65,7 +65,7 @@ class Mail extends Model
     }
 
     /**
-     * Whether the mail has been read yet
+     * Whether the mail has been read yet.
      *
      * @return bool
      */
@@ -75,7 +75,7 @@ class Mail extends Model
     }
 
     /**
-     * Whether the mail has been returned
+     * Whether the mail has been returned.
      *
      * @return bool
      */
@@ -85,7 +85,7 @@ class Mail extends Model
     }
 
     /**
-     * Whether the mail has been copied (Items can't be copied)
+     * Whether the mail has been copied (Items can't be copied).
      *
      * @return bool
      */
@@ -95,7 +95,7 @@ class Mail extends Model
     }
 
     /**
-     * Whether the money included in the mail is for a COD payment
+     * Whether the money included in the mail is for a COD payment.
      *
      * @return bool
      */
@@ -105,7 +105,7 @@ class Mail extends Model
     }
 
     /**
-     * Whether the mail has body text
+     * Whether the mail has body text.
      *
      * @return bool
      */
@@ -115,7 +115,7 @@ class Mail extends Model
     }
 
     /**
-     * Defines relation between the Mail and the Character that sent it
+     * Defines relation between the Mail and the Character that sent it.
      *
      * @return Builder
      */
@@ -125,7 +125,7 @@ class Mail extends Model
     }
 
     /**
-     * Defines relation between the Mail and the Character that received it
+     * Defines relation between the Mail and the Character that received it.
      *
      * @return Builder
      */
@@ -135,7 +135,7 @@ class Mail extends Model
     }
 
     /**
-     * Defines relation between the Mail and any items that were attached to it
+     * Defines relation between the Mail and any items that were attached to it.
      *
      * @return Builder
      */

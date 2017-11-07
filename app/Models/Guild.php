@@ -12,30 +12,31 @@ class Guild extends Model
     use BelongsToRealm;
 
     /**
-     * DB table that the model resides in
+     * DB table that the model resides in.
      *
      * @var string
      */
     protected $table = 'guild';
 
     /**
-     * Whether the model contains standard timestamp columns
+     * Whether the model contains standard timestamp columns.
      *
      * @var bool
      */
     public $timestamps = false;
 
     /**
-     * Name of column that acts as the model's primary key
+     * Name of column that acts as the model's primary key.
      *
      * @var string
      */
     protected $primaryKey = 'guildid';
 
     /**
-     * Get carbon instance of when the guild was created
+     * Get carbon instance of when the guild was created.
      *
      * @param int $value
+     *
      * @return Carbon
      */
     public function getCreatedateAttribute($value)
@@ -44,9 +45,10 @@ class Guild extends Model
     }
 
     /**
-     * Set the date the guild was created
+     * Set the date the guild was created.
      *
      * @param Carbon $value
+     *
      * @return void
      */
     public function setCreatedateAttribute($value)
@@ -55,7 +57,7 @@ class Guild extends Model
     }
 
     /**
-     * Returns the character that created the guild
+     * Returns the character that created the guild.
      *
      * @return Builder
      */
@@ -65,7 +67,7 @@ class Guild extends Model
     }
 
     /**
-     * Returns a collection of all members
+     * Returns a collection of all members.
      *
      * @return Builder
      */
@@ -77,7 +79,7 @@ class Guild extends Model
     }
 
     /**
-     * Returns a collection of all ranks available to the guild
+     * Returns a collection of all ranks available to the guild.
      *
      * @return Builder
      */

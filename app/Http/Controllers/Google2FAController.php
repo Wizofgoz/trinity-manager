@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use ParagonIE\ConstantTime\Base32;
 use PragmaRX\Google2FA\Google2FA;
@@ -23,8 +23,8 @@ class Google2FAController extends Controller
     }
 
     /**
-     *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function enableTwoFactor(Request $request)
@@ -40,7 +40,7 @@ class Google2FAController extends Controller
         $user->save();
 
         //generate image for QR barcode
-        $imageDataUri = (new Google2FA)->getQRCodeInline(
+        $imageDataUri = (new Google2FA())->getQRCodeInline(
             $request->getHttpHost(),
             $user->email,
             $secret,
@@ -48,12 +48,12 @@ class Google2FAController extends Controller
         );
 
         return view('2fa/enableTwoFactor', ['image' => $imageDataUri,
-          'secret' => $secret]);
+          'secret'                                  => $secret, ]);
     }
 
     /**
-     *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function disableTwoFactor(Request $request)
@@ -68,7 +68,7 @@ class Google2FAController extends Controller
     }
 
     /**
-     * Generate a secret key in Base32 format
+     * Generate a secret key in Base32 format.
      *
      * @return string
      */

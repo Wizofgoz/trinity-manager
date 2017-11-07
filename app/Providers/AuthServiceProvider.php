@@ -3,9 +3,8 @@
 namespace App\Providers;
 
 use App\Extensions\SHA1Hasher;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Auth::provider('trinitycore', function($app, array $config) {
+        Auth::provider('trinitycore', function ($app, array $config) {
             return new TrinityCoreUserProvider(new SHA1Hasher(), $config['model']);
         });
     }

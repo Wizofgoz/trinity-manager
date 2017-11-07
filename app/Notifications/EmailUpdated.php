@@ -4,9 +4,9 @@ namespace App\Notifications;
 
 use App\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class EmailUpdated extends Notification implements ShouldQueue
 {
@@ -18,6 +18,7 @@ class EmailUpdated extends Notification implements ShouldQueue
      * Create a new notification instance.
      *
      * @param $user User
+     *
      * @return void
      */
     public function __construct(User $user)
@@ -28,7 +29,8 @@ class EmailUpdated extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -39,14 +41,15 @@ class EmailUpdated extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->subject('Verify Email Address')
-                    ->greeting('Hello ' . strtolower($this->user->username))
+                    ->greeting('Hello '.strtolower($this->user->username))
                     ->line('Your account email address has been updated.')
                     ->line('Please verify your new email address below.')
                     ->action('Verify Email Address', route('account.verify', ['token' => $this->user->email_verification_token]));
@@ -55,7 +58,8 @@ class EmailUpdated extends Notification implements ShouldQueue
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)

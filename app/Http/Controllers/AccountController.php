@@ -6,7 +6,6 @@ use App\Events\Account\UpdatedEmail;
 use App\Events\Account\UpdatedPassword;
 use App\Extensions\SHA1Hasher;
 use App\User;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -27,7 +26,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Show general account information
+     * Show general account information.
      *
      * @param $request Request
      *
@@ -39,7 +38,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Store the changes in the database
+     * Store the changes in the database.
      *
      * @param Request $request
      *
@@ -56,7 +55,7 @@ class AccountController extends Controller
         }
 
         if (!is_null($request->password)) {
-            $user->{$user->getAuthPassword()} = $this->hasher->make($user->username . ':' . $request->password);
+            $user->{$user->getAuthPassword()} = $this->hasher->make($user->username.':'.$request->password);
             event(new UpdatedPassword($user));
         }
 
@@ -71,7 +70,7 @@ class AccountController extends Controller
 
         if (!Auth::guard()->attempt([
           'username' => $user->username,
-          'password' => $request->password
+          'password' => $request->password,
         ])) {
             throw ValidationException::withMessages(['password' => [trans('auth.failed')]]);
         }
@@ -85,13 +84,14 @@ class AccountController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => 'required|string|email|max:255|unique:auth.account',
+            'email'    => 'required|string|email|max:255|unique:auth.account',
             'password' => 'nullable|string|min:6|confirmed',
         ]);
     }
@@ -99,8 +99,8 @@ class AccountController extends Controller
     protected function emailValidator(array $data)
     {
         return Validator::make($data, [
-            'token' => 'required|string|exists:auth.account,email_verification_token',
-            'password' => 'required|string|min:6'
+            'token'    => 'required|string|exists:auth.account,email_verification_token',
+            'password' => 'required|string|min:6',
         ]);
     }
 }
