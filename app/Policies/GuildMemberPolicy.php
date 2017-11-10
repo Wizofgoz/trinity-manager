@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Models\GuildMember;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -14,8 +14,9 @@ class GuildMemberPolicy
     /**
      * Determine whether the user can view the guildMember.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\GuildMember  $guildMember
+     * @param \App\User               $user
+     * @param \App\Models\GuildMember $guildMember
+     *
      * @return mixed
      */
     public function view(User $user, GuildMember $guildMember)
@@ -39,7 +40,8 @@ class GuildMemberPolicy
     /**
      * Determine whether the user can create guildMembers.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -50,8 +52,9 @@ class GuildMemberPolicy
     /**
      * Determine whether the user can update the guildMember.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\GuildMember  $guildMember
+     * @param \App\User               $user
+     * @param \App\Models\GuildMember $guildMember
+     *
      * @return mixed
      */
     public function update(User $user, GuildMember $guildMember)
@@ -62,8 +65,9 @@ class GuildMemberPolicy
     /**
      * Determine whether the user can delete the guildMember.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\GuildMember  $guildMember
+     * @param \App\User               $user
+     * @param \App\Models\GuildMember $guildMember
+     *
      * @return mixed
      */
     public function delete(User $user, GuildMember $guildMember)
@@ -72,10 +76,11 @@ class GuildMemberPolicy
     }
 
     /**
-     * Determine whether the user is the master of the guild in question
+     * Determine whether the user is the master of the guild in question.
      *
-     * @param User $user
+     * @param User        $user
      * @param GuildMember $guildMember
+     *
      * @return bool
      */
     protected function isGuildMaster(User $user, GuildMember $guildMember)

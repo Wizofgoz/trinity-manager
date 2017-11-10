@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Models\Realm;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RealmPolicy
@@ -13,8 +13,9 @@ class RealmPolicy
     /**
      * Determine whether the user can view the realm.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Realm  $realm
+     * @param \App\User         $user
+     * @param \App\Models\Realm $realm
+     *
      * @return mixed
      */
     public function view(User $user, Realm $realm)
@@ -25,7 +26,8 @@ class RealmPolicy
     /**
      * Determine whether the user can create realms.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -36,8 +38,9 @@ class RealmPolicy
     /**
      * Determine whether the user can update the realm.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Realm  $realm
+     * @param \App\User         $user
+     * @param \App\Models\Realm $realm
+     *
      * @return mixed
      */
     public function update(User $user, Realm $realm)
@@ -48,8 +51,9 @@ class RealmPolicy
     /**
      * Determine whether the user can delete the realm.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Realm  $realm
+     * @param \App\User         $user
+     * @param \App\Models\Realm $realm
+     *
      * @return mixed
      */
     public function delete(User $user, Realm $realm)

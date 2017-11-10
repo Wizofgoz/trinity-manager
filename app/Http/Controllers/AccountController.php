@@ -66,7 +66,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Mark the user's email as validated
+     * Mark the user's email as validated.
      *
      * @param Request $request
      *
