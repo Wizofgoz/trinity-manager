@@ -26,9 +26,10 @@ class CalendarEvent extends Model
     public $timestamps = false;
 
     /**
-     * Return the eventtime as a Carbon instance
+     * Return the eventtime as a Carbon instance.
      *
      * @param $value
+     *
      * @return Carbon
      */
     public function getEventtimeAttribute($value)
@@ -37,7 +38,7 @@ class CalendarEvent extends Model
     }
 
     /**
-     * Cast the Carbon instance of eventtime as a UNIX timestamp
+     * Cast the Carbon instance of eventtime as a UNIX timestamp.
      *
      * @param Carbon $value
      */
@@ -47,7 +48,7 @@ class CalendarEvent extends Model
     }
 
     /**
-     * Defines relation with characters that are invited to the event
+     * Defines relation with characters that are invited to the event.
      *
      * @return Builder
      */
@@ -59,7 +60,7 @@ class CalendarEvent extends Model
     }
 
     /**
-     * Defines relation with the character that created the event
+     * Defines relation with the character that created the event.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

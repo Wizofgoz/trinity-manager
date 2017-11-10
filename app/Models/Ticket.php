@@ -33,7 +33,7 @@ class Ticket extends Model
         }
 
         if ($this->closedBy == -1) {
-            return null;
+            return;
         }
 
         return $this->belongsTo(Character::class, 'closedBy', 'guid');

@@ -20,9 +20,10 @@ class GuildController extends Controller
     }
 
     /**
-     * List of guilds on the given realm
+     * List of guilds on the given realm.
      *
      * @param Realm $realm
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Realm $realm)
@@ -33,10 +34,11 @@ class GuildController extends Controller
     }
 
     /**
-     * Information view for a guild
+     * Information view for a guild.
      *
      * @param Realm $realm
-     * @param int $guildID
+     * @param int   $guildID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Realm $realm, int $guildID)
@@ -49,10 +51,11 @@ class GuildController extends Controller
     }
 
     /**
-     * Show edit form for guild
+     * Show edit form for guild.
      *
      * @param Realm $realm
-     * @param int $guildID
+     * @param int   $guildID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Realm $realm, int $guildID)
@@ -65,11 +68,11 @@ class GuildController extends Controller
     }
 
     /**
-     * Store the changes in the database
+     * Store the changes in the database.
      *
      * @param Request $request
-     * @param Realm $realm
-     * @param int $guildID
+     * @param Realm   $realm
+     * @param int     $guildID
      */
     public function update(Request $request, Realm $realm, int $guildID)
     {
@@ -87,14 +90,14 @@ class GuildController extends Controller
 
     public function delete()
     {
-
     }
 
     /**
-     * Resolve guild from ID and a given realm
+     * Resolve guild from ID and a given realm.
      *
      * @param Realm $realm
-     * @param int $guildID
+     * @param int   $guildID
+     *
      * @return mixed
      */
     protected function resolveGuild(Realm $realm, int $guildID)
@@ -103,15 +106,16 @@ class GuildController extends Controller
     }
 
     /**
-     * Get validator for a guild
+     * Get validator for a guild.
      *
      * @param array $data
+     *
      * @return mixed
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|min:4|max:255'
+            'name' => 'required|string|min:4|max:255',
         ]);
     }
 }

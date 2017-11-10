@@ -33,9 +33,10 @@ class CalendarInvite extends Pivot
     protected $primaryKey = 'id';
 
     /**
-     * Return the statustime as a Carbon instance
+     * Return the statustime as a Carbon instance.
      *
      * @param $value
+     *
      * @return Carbon
      */
     public function getStatustimeAttribute($value)
@@ -44,7 +45,7 @@ class CalendarInvite extends Pivot
     }
 
     /**
-     * Cast the Carbon instance of statustime as a UNIX timestamp
+     * Cast the Carbon instance of statustime as a UNIX timestamp.
      *
      * @param Carbon $value
      */
@@ -54,7 +55,7 @@ class CalendarInvite extends Pivot
     }
 
     /**
-     * Defines relation with character that received the invitation
+     * Defines relation with character that received the invitation.
      *
      * @return Builder
      */
@@ -64,7 +65,7 @@ class CalendarInvite extends Pivot
     }
 
     /**
-     * Defines relation with character that sent the invitation
+     * Defines relation with character that sent the invitation.
      *
      * @return Builder
      */
