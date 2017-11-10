@@ -14,8 +14,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Socket.IO -->
-    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+    <!-- Socket.IO
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>-->
 </head>
 <body>
     <div id="app">

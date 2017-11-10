@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Realm extends Model
@@ -177,7 +178,7 @@ class Realm extends Model
     /**
      * Returns the uptime model for the realm.
      *
-     * @return Uptime
+     * @return Builder
      */
     public function uptime()
     {

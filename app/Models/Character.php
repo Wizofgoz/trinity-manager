@@ -10,6 +10,7 @@ use App\User;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -100,6 +101,16 @@ class Character extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Returns the key name for use in routing
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'guid';
+    }
 
     /**
      * Returns the account the character belongs to.
@@ -393,6 +404,30 @@ class Character extends Model
     }
 
     /**
+     * Defines relation between the character and any events they have been invited to
+     *
+     * @return Builder
+     */
+    public function calendarReceived()
+    {
+        return $this->belongsToMany(CalendarEvent::class, 'calendar_invites', 'invitee', 'calendar', 'guid', 'id')
+              ->using(CalendarInvite::class)
+              ->as('invite');
+    }
+
+    /**
+     * Defines relation between the character and any events they have invited others to
+     *
+     * @return Builder
+     */
+    public function calendarSent()
+    {
+        return $this->belongsToMany(CalendarEvent::class, 'calendar_invites', 'invitee', 'calendar', 'guid', 'id')
+              ->using(CalendarInvite::class)
+              ->as('invite');
+    }
+
+    /**
      * Returns array of stringified flags the character has assigned.
      *
      * @return array
@@ -424,5 +459,26 @@ class Character extends Model
         }
 
         return $this->playerFlags & $flag;
+    }
+
+    /**
+     * Gets string version of title the character has activated (defaults to %s)
+     *
+     * @return string
+     */
+    public function title()
+    {
+        return DB::connection('sqlite')->table('player_titles_wotlk')
+                ->where('id', '=', $this->chosenTitle)->select('title')->first(null, '%s');
+    }
+
+    /**
+     * Gets name formatted with active title
+     *
+     * @return string
+     */
+    public function formattedName()
+    {
+        return sprintf($this->title(), $this->name);
     }
 }

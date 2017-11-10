@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\Account\UpdatedEmail;
-use App\Events\Account\UpdatedPassword;
 use App\Extensions\SHA1Hasher;
+use App\Notifications\EmailUpdated;
+use App\Notifications\PasswordUpdated;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,20 +51,30 @@ class AccountController extends Controller
         $user = $request->user();
         if ($user->email !== $request->email) {
             $user->email = $request->email;
-            event(new UpdatedEmail($user));
+            $user->email_verified = false;
+            $user->notify(new EmailUpdated($user));
         }
 
         if (!is_null($request->password)) {
             $user->{$user->getAuthPassword()} = $this->hasher->make($user->username.':'.$request->password);
-            event(new UpdatedPassword($user));
+            $user->notify(new PasswordUpdated($user));
         }
+
+        $user->save();
 
         $request->session()->flash('status', 'Account updated');
     }
 
+    /**
+     * Mark the user's email as validated
+     *
+     * @param Request $request
+     *
+     * @throws ValidationException
+     */
     public function verifyEmail(Request $request)
     {
-        $this->emailValidator($request->all());
+        $this->emailValidator($request->all())->validate();
 
         $user = User::where('email_verification_token', '=', $request->token)->firstOrFail();
 
@@ -82,7 +92,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Get a validator for an incoming update request.
      *
      * @param array $data
      *
@@ -96,6 +106,13 @@ class AccountController extends Controller
         ]);
     }
 
+    /**
+     * Get a validator for an incoming verify email request.
+     *
+     * @param array $data
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
     protected function emailValidator(array $data)
     {
         return Validator::make($data, [

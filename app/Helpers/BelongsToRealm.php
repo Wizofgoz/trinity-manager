@@ -12,6 +12,8 @@ trait BelongsToRealm
     {
         $this->realm = $realm;
         $this->setConnection(static::CONNECTION_BASE.$this->realm->id);
+
+        return $this;
     }
 
     public function getRealm()

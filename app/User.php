@@ -34,6 +34,7 @@ class User extends Authenticatable
      * @var bool
      */
     public $timestamps = false;
+
     protected $primaryKey = 'id';
 
     /**
@@ -79,7 +80,7 @@ class User extends Authenticatable
      *
      * @return Collection
      */
-    public function characters()
+    public function allCharacters()
     {
         $characters = new Collection();
 
@@ -88,11 +89,22 @@ class User extends Authenticatable
             // if the realm has characters, get them, else skip
             if ($realm->numchars > 0) {
                 // add the characters to the collection
-                $characters->merge(Character::where('account', '=', $this->id)->setRealm($realm)->get());
+                $characters->merge($this->realmCharacters($realm));
             }
         }
 
         return $characters;
+    }
+
+    /**
+     * Returns a collection of the characters that belong to the account on the given realm
+     *
+     * @param Realm $realm
+     * @return mixed
+     */
+    public function realmCharacters(Realm $realm)
+    {
+        return Character::setRealm($realm)->where('account', '=', $this->id)->get();
     }
 
     /**
@@ -116,21 +128,56 @@ class User extends Authenticatable
         return SecurityLevel::where('id', '=', $this->id);
     }
 
+    /**
+     * Whether the user is a normal player on the given realm or all realms when omitted
+     *
+     * @param int|null $realmID
+     * @return bool
+     */
+    public function isPlayer(int $realmID = null)
+    {
+        return $this->hasSecurityLevel(['level' => SecurityLevel::LEVEL_PLAYER, 'realm' => $realmID]);
+    }
+
+    /**
+     * Whether the user is a moderator on the given realm or all realms when omitted
+     *
+     * @param int|null $realmID
+     * @return bool
+     */
     public function isModerator(int $realmID = null)
     {
         return $this->hasSecurityLevel(['level' => SecurityLevel::LEVEL_MODERATOR, 'realm' => $realmID]);
     }
 
+    /**
+     * Whether the user is a GM on the given realm or all realms when omitted
+     *
+     * @param int|null $realmID
+     * @return bool
+     */
     public function isGM(int $realmID = null)
     {
         return $this->hasSecurityLevel(['level' => SecurityLevel::LEVEL_GM, 'realm' => $realmID]);
     }
 
+    /**
+     * Whether the user is a moderator on the given realm or all realms when omitted
+     *
+     * @param int|null $realmID
+     * @return bool
+     */
     public function isAdmin(int $realmID = null)
     {
         return $this->hasSecurityLevel(['level' => SecurityLevel::LEVEL_ADMIN, 'realm' => $realmID]);
     }
 
+    /**
+     * Whether the user has a SecurityLevel matching the given filters
+     *
+     * @param array $filters
+     * @return bool
+     */
     public function hasSecurityLevel(array $filters = [])
     {
         $defaultFilters = [

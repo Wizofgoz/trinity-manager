@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         $account = Auth::user();
         $realms = $account->realms();
-        $characters = $account->characters();
+        $characters = $account->allCharacters();
 
         return view('home', [
           'realms'     => $realms,
