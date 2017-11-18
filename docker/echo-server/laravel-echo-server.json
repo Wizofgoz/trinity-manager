@@ -1,0 +1,32 @@
+{
+  "authHost": "https://wow.evecommander.com",
+  "authEndpoint": "/broadcasting/auth",
+  "clients": [
+    {
+      "appId": "3ea2c22c3d65dcd4",
+      "key": "998af08f2807915c3e91a9899f75be0e"
+    }
+  ],
+  "database": "redis",
+  "databaseConfig": {
+    "redis": {},
+    "sqlite": {
+      "databasePath": "/database/laravel-echo-server.sqlite"
+    }
+  },
+  "devMode": false,
+  "host": null,
+  "port": "6001",
+  "protocol": "https",
+  "socketio": {},
+  "sslCertPath": "/etc/letsencrypt/live/wow.evecommander.com/fullchain.pem",
+  "sslKeyPath": "/etc/letsencrypt/live/wow.evecommander.com/privkey.pem",
+  "sslCertChainPath": "",
+  "sslPassphrase": "",
+  "apiOriginAllow": {
+    "allowCors": false,
+    "allowOrigin": "",
+    "allowMethods": "",
+    "allowHeaders": ""
+  }
+}

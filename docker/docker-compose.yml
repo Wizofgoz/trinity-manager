@@ -1,38 +1,56 @@
 version: '2'
 
 services:
-    trinity-manager-web:
+    web:
         image: nginx:alpine
         ports:
-          - "8080:80"
+          - "9080:80"
         volumes:
             - ~/dev/trinity-manager:/var/www/trinity-manager
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
             - ./nginx/sites-available/trinity-manager.conf:/etc/nginx/conf.d/default.conf
-    trinity-manager-php:
-        image: library/php:alpine
-#        command: bash -c "cd /var/www/trinity-manager; npm run docker;"
+    php:
+        build:
+          context: ./php-fpm
+          dockerfile: ./php-fpm/Dockerfile
+        image: trinity-php:alpine
         volumes:
             - ~/dev/trinity-manager:/var/www/trinity-manager
             - ./php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-    trinity-manager-mysql:
+    mysql:
         image: mysql:latest
         ports:
-          - "8081:3306"
+          - "8086:3306"
         environment:
-          - "MYSQL_ROOT_PASSWORD=trinity"
-    trinity-manager-cache:
+          MYSQL_USER: "trinity"
+          MYSQL_PASSWORD: "trinity"
+        volumes:
+          - ./mysql/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
+    cache:
         image: redis:alpine
-    trinity-manager-world:
+    world:
         image: wizofgoz/trinity-world:latest
         ports:
           - "8085:8085"
         volumes:
             - ./server/etc/worldserver.conf:/srv/server/etc/worldserver.conf
-    trinity-manager-auth:
+        depends_on:
+          - mysql
+        command: /home/server/bin/worldserver
+    auth:
         image: wizofgoz/trinity-auth:latest
         ports:
           - "3724:3724"
         volumes:
             - ./server/etc/authserver.conf:/srv/server/etc/authserver.conf
+        depends_on:
+          - mysql
+        command: /home/server/bin/worldserver
+    echo-server:
+        image: lagun4ik/laravel-echo-server
+        ports:
+          - "1194:1194/udp"
+        restart: always
+        volumes:
+          - ./echo-server/data/:/app
 

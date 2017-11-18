@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Realm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
@@ -126,12 +127,29 @@ class RealmController extends Controller
         $realm->delete();
     }
 
-  /**
-   * Update a given realm model with data from the given request
-   *
-   * @param Request $request
-   * @param Realm $realm
-   */
+    public function start(Request $request, Realm $realm)
+    {
+        $exitCode = Artisan::call('realm:start', [
+            'realmID' => $realm->id
+        ]);
+    }
+
+    public function stop()
+    {
+
+    }
+
+    public function restart()
+    {
+
+    }
+
+    /**
+     * Update a given realm model with data from the given request
+     *
+     * @param Request $request
+     * @param Realm $realm
+     */
     protected function updateModel(Request $request, Realm $realm)
     {
         $realm->name = $request->name;
