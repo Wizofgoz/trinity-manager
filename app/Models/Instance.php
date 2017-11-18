@@ -47,11 +47,10 @@ class Instance extends Model
 
     public function map()
     {
-
     }
 
     /**
-     * Returns when the instance will reset as a Carbon instance
+     * Returns when the instance will reset as a Carbon instance.
      *
      * @return Carbon
      */
