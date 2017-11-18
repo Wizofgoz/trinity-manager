@@ -133,18 +133,16 @@ class RealmController extends Controller
     public function start(Request $request, Realm $realm)
     {
         $exitCode = Artisan::call('realm:start', [
-            'realmID' => $realm->id
+            'realmID' => $realm->id,
         ]);
     }
 
     public function stop()
     {
-
     }
 
     public function restart()
     {
-
     }
 
     /**

@@ -23,11 +23,11 @@ class Group extends Model
     const TYPE_LOOKING_FOR_GROUP = 8;
 
     const TYPE_MAP = [
-        self::TYPE_NORMAL => 'Normal',
-        self::TYPE_BATTLEGROUND => 'Battleground',
-        self::TYPE_RAID => 'Raid',
+        self::TYPE_NORMAL            => 'Normal',
+        self::TYPE_BATTLEGROUND      => 'Battleground',
+        self::TYPE_RAID              => 'Raid',
         self::TYPE_BATTLEGROUND_RAID => 'Battleground Raid',
-        self::TYPE_UNKNOWN => 'Unknown',
+        self::TYPE_UNKNOWN           => 'Unknown',
         self::TYPE_LOOKING_FOR_GROUP => 'Looking For Group',
     ];
 
