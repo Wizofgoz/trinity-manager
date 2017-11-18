@@ -10,7 +10,6 @@ use App\User;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -103,7 +102,7 @@ class Character extends Model
     public $timestamps = false;
 
     /**
-     * Returns the key name for use in routing
+     * Returns the key name for use in routing.
      *
      * @return string
      */
@@ -404,7 +403,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and any events they have been invited to
+     * Defines relation between the character and any events they have been invited to.
      *
      * @return Builder
      */
@@ -416,7 +415,7 @@ class Character extends Model
     }
 
     /**
-     * Defines relation between the character and any events they have invited others to
+     * Defines relation between the character and any events they have invited others to.
      *
      * @return Builder
      */
@@ -462,7 +461,7 @@ class Character extends Model
     }
 
     /**
-     * Gets string version of title the character has activated (defaults to %s)
+     * Gets string version of title the character has activated (defaults to %s).
      *
      * @return string
      */
@@ -473,7 +472,7 @@ class Character extends Model
     }
 
     /**
-     * Gets name formatted with active title
+     * Gets name formatted with active title.
      *
      * @return string
      */

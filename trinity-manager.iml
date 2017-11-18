@@ -5,6 +5,17 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bacon/bacon-qr-code" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/constant_time_encoding" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pragmarx/google2fa" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pragmarx/google2fa-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/predis/predis" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php56" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -18,6 +29,37 @@
         <SOURCES>
           <root url="phar://$MODULE_DIR$/vendor/phar-io/manifest/tests/_fixture/test.phar/" />
           <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-1.0.1.phar/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="PHP" type="php">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bacon/bacon-qr-code" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/psr7" />
+          <root url="file://$MODULE_DIR$/vendor/paragonie/constant_time_encoding" />
+          <root url="file://$MODULE_DIR$/vendor/pragmarx/google2fa" />
+          <root url="file://$MODULE_DIR$/vendor/pragmarx/google2fa-laravel" />
+          <root url="file://$MODULE_DIR$/vendor/predis/predis" />
+          <root url="file://$MODULE_DIR$/vendor/psr/http-message" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php56" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bacon/bacon-qr-code" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/psr7" />
+          <root url="file://$MODULE_DIR$/vendor/paragonie/constant_time_encoding" />
+          <root url="file://$MODULE_DIR$/vendor/pragmarx/google2fa" />
+          <root url="file://$MODULE_DIR$/vendor/pragmarx/google2fa-laravel" />
+          <root url="file://$MODULE_DIR$/vendor/predis/predis" />
+          <root url="file://$MODULE_DIR$/vendor/psr/http-message" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php56" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
         </SOURCES>
       </library>
     </orderEntry>

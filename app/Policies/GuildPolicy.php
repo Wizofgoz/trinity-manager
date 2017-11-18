@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Models\Guild;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class GuildPolicy
@@ -13,8 +13,9 @@ class GuildPolicy
     /**
      * Determine whether the user can view the guild.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Guild  $guild
+     * @param \App\User         $user
+     * @param \App\Models\Guild $guild
+     *
      * @return mixed
      */
     public function view(User $user, Guild $guild)
@@ -25,7 +26,8 @@ class GuildPolicy
     /**
      * Determine whether the user can create guilds.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -36,8 +38,9 @@ class GuildPolicy
     /**
      * Determine whether the user can update the guild.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Guild  $guild
+     * @param \App\User         $user
+     * @param \App\Models\Guild $guild
+     *
      * @return mixed
      */
     public function update(User $user, Guild $guild)
@@ -49,8 +52,9 @@ class GuildPolicy
     /**
      * Determine whether the user can delete the guild.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Guild  $guild
+     * @param \App\User         $user
+     * @param \App\Models\Guild $guild
+     *
      * @return mixed
      */
     public function delete(User $user, Guild $guild)
@@ -60,10 +64,11 @@ class GuildPolicy
     }
 
     /**
-     * Determine whether the user is the master of the guild in question
+     * Determine whether the user is the master of the guild in question.
      *
-     * @param User $user
+     * @param User  $user
      * @param Guild $guild
+     *
      * @return bool
      */
     protected function isGuildMaster(User $user, Guild $guild)

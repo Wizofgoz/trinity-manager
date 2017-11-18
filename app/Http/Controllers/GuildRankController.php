@@ -19,10 +19,11 @@ class GuildRankController extends Controller
     }
 
     /**
-     * List of guild ranks for a given guild on a realm
+     * List of guild ranks for a given guild on a realm.
      *
      * @param Realm $realm
-     * @param int $guildID
+     * @param int   $guildID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Realm $realm, int $guildID)
@@ -35,11 +36,12 @@ class GuildRankController extends Controller
     }
 
     /**
-     * Info view for a guild rank
+     * Info view for a guild rank.
      *
      * @param Realm $realm
-     * @param int $guildID
-     * @param int $rankID
+     * @param int   $guildID
+     * @param int   $rankID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Realm $realm, int $guildID, int $rankID)
@@ -53,11 +55,12 @@ class GuildRankController extends Controller
     }
 
     /**
-     * Show edit form for a guild rank
+     * Show edit form for a guild rank.
      *
      * @param Realm $realm
-     * @param int $guildID
-     * @param int $rankID
+     * @param int   $guildID
+     * @param int   $rankID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Realm $realm, int $guildID, int $rankID)
@@ -71,12 +74,12 @@ class GuildRankController extends Controller
     }
 
     /**
-     * Update the guild in the database
+     * Update the guild in the database.
      *
      * @param Request $request
-     * @param Realm $realm
-     * @param int $guildID
-     * @param int $rankID
+     * @param Realm   $realm
+     * @param int     $guildID
+     * @param int     $rankID
      */
     public function update(Request $request, Realm $realm, int $guildID, int $rankID)
     {
@@ -87,30 +90,28 @@ class GuildRankController extends Controller
 
         $rank->rank = $request->rank;
         $rank->pnote = $request->pnote;
-
     }
 
     public function create()
     {
-
     }
 
     public function store()
     {
-
     }
 
     public function destroy()
     {
-
     }
 
     /**
-     * Resolve a Guild from a realm and guild ID
+     * Resolve a Guild from a realm and guild ID.
      *
      * @param Realm $realm
-     * @param int $guildID
+     * @param int   $guildID
+     *
      * @throws ModelNotFoundException
+     *
      * @return Guild
      */
     protected function resolveGuild(Realm $realm, int $guildID)
@@ -119,11 +120,13 @@ class GuildRankController extends Controller
     }
 
     /**
-     * Resolve a Guild Member from a guild and Character ID
+     * Resolve a Guild Member from a guild and Character ID.
      *
      * @param Guild $guild
-     * @param int $rankID
+     * @param int   $rankID
+     *
      * @throws ModelNotFoundException
+     *
      * @return GuildRank
      */
     protected function resolveGuildRank(Guild $guild, int $rankID)

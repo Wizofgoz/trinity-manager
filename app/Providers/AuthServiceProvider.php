@@ -26,12 +26,12 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Realm::class => RealmPolicy::class,
-        Guild::class => GuildPolicy::class,
-        GuildMember::class => GuildMemberPolicy::class,
-        GuildRank::class => GuildRankPolicy::class,
+        Realm::class         => RealmPolicy::class,
+        Guild::class         => GuildPolicy::class,
+        GuildMember::class   => GuildMemberPolicy::class,
+        GuildRank::class     => GuildRankPolicy::class,
         CalendarEvent::class => CalendarEventPolicy::class,
-        Ticket::class => TicketPolicy::class,
+        Ticket::class        => TicketPolicy::class,
     ];
 
     /**

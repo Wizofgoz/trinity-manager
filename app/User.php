@@ -97,9 +97,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Returns a collection of the characters that belong to the account on the given realm
+     * Returns a collection of the characters that belong to the account on the given realm.
      *
      * @param Realm $realm
+     *
      * @return mixed
      */
     public function realmCharacters(Realm $realm)
@@ -129,9 +130,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Whether the user is a normal player on the given realm or all realms when omitted
+     * Whether the user is a normal player on the given realm or all realms when omitted.
      *
      * @param int|null $realmID
+     *
      * @return bool
      */
     public function isPlayer(int $realmID = null)
@@ -140,9 +142,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Whether the user is a moderator on the given realm or all realms when omitted
+     * Whether the user is a moderator on the given realm or all realms when omitted.
      *
      * @param int|null $realmID
+     *
      * @return bool
      */
     public function isModerator(int $realmID = null)
@@ -151,9 +154,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Whether the user is a GM on the given realm or all realms when omitted
+     * Whether the user is a GM on the given realm or all realms when omitted.
      *
      * @param int|null $realmID
+     *
      * @return bool
      */
     public function isGM(int $realmID = null)
@@ -162,9 +166,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Whether the user is a moderator on the given realm or all realms when omitted
+     * Whether the user is a moderator on the given realm or all realms when omitted.
      *
      * @param int|null $realmID
+     *
      * @return bool
      */
     public function isAdmin(int $realmID = null)
@@ -173,9 +178,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Whether the user has a SecurityLevel matching the given filters
+     * Whether the user has a SecurityLevel matching the given filters.
      *
      * @param array $filters
+     *
      * @return bool
      */
     public function hasSecurityLevel(array $filters = [])

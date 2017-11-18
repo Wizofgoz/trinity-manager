@@ -5,8 +5,8 @@ namespace App\Policies;
 use App\Helpers\GuildRights;
 use App\Models\Guild;
 use App\Models\GuildMember;
-use App\User;
 use App\Models\GuildRank;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class GuildRankPolicy
@@ -16,8 +16,9 @@ class GuildRankPolicy
     /**
      * Determine whether the user can view the GuildRank.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\GuildRank  $guildRank
+     * @param \App\User             $user
+     * @param \App\Models\GuildRank $guildRank
+     *
      * @return mixed
      */
     public function view(User $user, GuildRank $guildRank)
@@ -28,8 +29,9 @@ class GuildRankPolicy
     /**
      * Determine whether the user can create GuildRanks.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Guild  $guild
+     * @param \App\User         $user
+     * @param \App\Models\Guild $guild
+     *
      * @return mixed
      */
     public function create(User $user, Guild $guild)
@@ -40,8 +42,9 @@ class GuildRankPolicy
     /**
      * Determine whether the user can update the GuildRank.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\GuildRank  $guildRank
+     * @param \App\User             $user
+     * @param \App\Models\GuildRank $guildRank
+     *
      * @return mixed
      */
     public function update(User $user, GuildRank $guildRank)
@@ -52,8 +55,9 @@ class GuildRankPolicy
     /**
      * Determine whether the user can delete the GuildRank.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\GuildRank  $guildRank
+     * @param \App\User             $user
+     * @param \App\Models\GuildRank $guildRank
+     *
      * @return mixed
      */
     public function delete(User $user, GuildRank $guildRank)
@@ -62,10 +66,11 @@ class GuildRankPolicy
     }
 
     /**
-     * Determine whether the user can make edits to guild info
+     * Determine whether the user can make edits to guild info.
      *
-     * @param User $user
+     * @param User  $user
      * @param Guild $guild
+     *
      * @return bool
      */
     protected function canEditGuildInfo(User $user, Guild $guild)

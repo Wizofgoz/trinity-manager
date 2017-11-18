@@ -20,9 +20,10 @@ class CharacterController extends Controller
 
     /**
      * Show list of all characters the user has on the realm
-     * or all characters if they are a GM or Admin
+     * or all characters if they are a GM or Admin.
      *
      * @param Realm $realm
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Realm $realm)
@@ -39,10 +40,11 @@ class CharacterController extends Controller
     }
 
     /**
-     * Show info for the provided character
+     * Show info for the provided character.
      *
      * @param Realm $realm
-     * @param int $characterID
+     * @param int   $characterID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Realm $realm, int $characterID)

@@ -22,7 +22,7 @@ class RealmController extends Controller
     }
 
     /**
-     * List of all realms
+     * List of all realms.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -34,9 +34,10 @@ class RealmController extends Controller
     }
 
     /**
-     * Info view of single realm
+     * Info view of single realm.
      *
      * @param Realm $realm
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Realm $realm)
@@ -47,9 +48,10 @@ class RealmController extends Controller
     }
 
     /**
-     * Show edit form for single realm
+     * Show edit form for single realm.
      *
      * @param Realm $realm
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Realm $realm)
@@ -60,10 +62,10 @@ class RealmController extends Controller
     }
 
     /**
-     * Perform update on a single realm
+     * Perform update on a single realm.
      *
      * @param Request $request
-     * @param Realm $realm
+     * @param Realm   $realm
      */
     public function update(Request $request, Realm $realm)
     {
@@ -79,7 +81,7 @@ class RealmController extends Controller
     }
 
     /**
-     * Show create form for a single realm
+     * Show create form for a single realm.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -91,7 +93,7 @@ class RealmController extends Controller
     }
 
     /**
-     * Perform create for a single realm
+     * Perform create for a single realm.
      *
      * @param Request $request
      */
@@ -110,10 +112,11 @@ class RealmController extends Controller
     }
 
     /**
-     * Perform delete on a single realm
+     * Perform delete on a single realm.
      *
      * @param Request $request
-     * @param Realm $realm
+     * @param Realm   $realm
+     *
      * @throws ValidationException
      */
     public function destroy(Request $request, Realm $realm)
@@ -145,10 +148,10 @@ class RealmController extends Controller
     }
 
     /**
-     * Update a given realm model with data from the given request
+     * Update a given realm model with data from the given request.
      *
      * @param Request $request
-     * @param Realm $realm
+     * @param Realm   $realm
      */
     protected function updateModel(Request $request, Realm $realm)
     {
@@ -164,19 +167,20 @@ class RealmController extends Controller
     }
 
     /**
-     * Get validator for realm
+     * Get validator for realm.
      *
      * @param array $data
+     *
      * @return mixed
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|min:4|max:32',
-            'address' => 'string|min:1|max:255',
+            'name'         => 'required|string|min:4|max:32',
+            'address'      => 'string|min:1|max:255',
             'localAddress' => 'ip',
-            'port' => 'numeric|min:1|max:65536',
-            'icon' => [
+            'port'         => 'numeric|min:1|max:65536',
+            'icon'         => [
                 'numeric',
                 Rule::in(array_keys(Realm::ICON_MAP)),
             ],
@@ -189,7 +193,7 @@ class RealmController extends Controller
                 Rule::in(array_keys(Realm::TIMEZONE_MAP)),
             ],
             'allowedSecurityLevel' => 'numeric|min:0|max:3',
-            'gamebuild' => [
+            'gamebuild'            => [
                 'numeric',
                 Rule::in(array_keys(Realm::BUILD_MAP)),
             ],

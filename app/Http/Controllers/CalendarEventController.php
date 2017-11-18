@@ -18,10 +18,11 @@ class CalendarEventController extends Controller
     }
 
     /**
-     * List of sent and received events
+     * List of sent and received events.
      *
      * @param Realm $realm
-     * @param int $characterID
+     * @param int   $characterID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Realm $realm, int $characterID)
@@ -34,11 +35,12 @@ class CalendarEventController extends Controller
     }
 
     /**
-     * Info view of an event
+     * Info view of an event.
      *
      * @param Realm $realm
-     * @param int $characterID
-     * @param int $eventID
+     * @param int   $characterID
+     * @param int   $eventID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Realm $realm, int $characterID, int $eventID)
@@ -52,11 +54,12 @@ class CalendarEventController extends Controller
     }
 
     /**
-     * Show edit form for individual event
+     * Show edit form for individual event.
      *
      * @param Realm $realm
-     * @param int $characterID
-     * @param int $eventID
+     * @param int   $characterID
+     * @param int   $eventID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Realm $realm, int $characterID, int $eventID)
@@ -70,25 +73,24 @@ class CalendarEventController extends Controller
     }
 
     /**
-     * Handle update request for individual event
+     * Handle update request for individual event.
      *
      * @param Realm $realm
-     * @param int $characterID
-     * @param int $eventID
+     * @param int   $characterID
+     * @param int   $eventID
      */
     public function update(Realm $realm, int $characterID, int $eventID)
     {
         $event = $this->resolveEvent($realm, $eventID);
 
         $this->authorize('update', $event);
-
     }
 
     /**
-     * Show create form for individual event
+     * Show create form for individual event.
      *
      * @param Realm $realm
-     * @param int $characterID
+     * @param int   $characterID
      */
     public function create(Realm $realm, int $characterID)
     {
@@ -96,10 +98,10 @@ class CalendarEventController extends Controller
     }
 
     /**
-     * Handle create request for individual event
+     * Handle create request for individual event.
      *
      * @param Realm $realm
-     * @param int $characterID
+     * @param int   $characterID
      */
     public function store(Realm $realm, int $characterID)
     {
@@ -107,25 +109,25 @@ class CalendarEventController extends Controller
     }
 
     /**
-     * Handle delete request for an individual event
+     * Handle delete request for an individual event.
      *
      * @param Realm $realm
-     * @param int $characterID
-     * @param int $eventID
+     * @param int   $characterID
+     * @param int   $eventID
      */
     public function destroy(Realm $realm, int $characterID, int $eventID)
     {
         $event = $this->resolveEvent($realm, $eventID);
 
         $this->authorize('delete', $event);
-
     }
 
     /**
-     * Resolve a character from a realm and a character id
+     * Resolve a character from a realm and a character id.
      *
      * @param Realm $realm
-     * @param int $characterID
+     * @param int   $characterID
+     *
      * @return mixed
      */
     protected function resolveCharacter(Realm $realm, int $characterID)
@@ -134,10 +136,11 @@ class CalendarEventController extends Controller
     }
 
     /**
-     * Resolve an event from a realm and an event id
+     * Resolve an event from a realm and an event id.
      *
      * @param Realm $realm
-     * @param int $eventID
+     * @param int   $eventID
+     *
      * @return mixed
      */
     protected function resolveEvent(Realm $realm, int $eventID)

@@ -21,11 +21,12 @@ class GuildMemberController extends Controller
     }
 
     /**
-     * List of guild members for a given guild on a realm
+     * List of guild members for a given guild on a realm.
      *
      * @param Request $request
-     * @param Realm $realm
-     * @param int $guildID
+     * @param Realm   $realm
+     * @param int     $guildID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request, Realm $realm, int $guildID)
@@ -35,7 +36,7 @@ class GuildMemberController extends Controller
         $members = $guild->members();
 
         if ($request->has('rank')) {
-          $members->where('rank', '=', $request->rank);
+            $members->where('rank', '=', $request->rank);
         }
 
         $members = $members->get();
@@ -44,11 +45,12 @@ class GuildMemberController extends Controller
     }
 
     /**
-     * Info view for a guild member
+     * Info view for a guild member.
      *
      * @param Realm $realm
-     * @param int $guildID
-     * @param int $characterID
+     * @param int   $guildID
+     * @param int   $characterID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Realm $realm, int $guildID, int $characterID)
@@ -62,11 +64,12 @@ class GuildMemberController extends Controller
     }
 
     /**
-     * Show edit form for a guild member
+     * Show edit form for a guild member.
      *
      * @param Realm $realm
-     * @param int $guildID
-     * @param int $characterID
+     * @param int   $guildID
+     * @param int   $characterID
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Realm $realm, int $guildID, int $characterID)
@@ -80,12 +83,12 @@ class GuildMemberController extends Controller
     }
 
     /**
-     * Update the guild in the database
+     * Update the guild in the database.
      *
      * @param Request $request
-     * @param Realm $realm
-     * @param int $guildID
-     * @param int $characterID
+     * @param Realm   $realm
+     * @param int     $guildID
+     * @param int     $characterID
      */
     public function update(Request $request, Realm $realm, int $guildID, int $characterID)
     {
@@ -96,15 +99,16 @@ class GuildMemberController extends Controller
 
         $member->rank = $request->rank;
         $member->pnote = $request->pnote;
-
     }
 
     /**
-     * Resolve a Guild from a realm and guild ID
+     * Resolve a Guild from a realm and guild ID.
      *
      * @param Realm $realm
-     * @param int $guildID
+     * @param int   $guildID
+     *
      * @throws ModelNotFoundException
+     *
      * @return Guild
      */
     protected function resolveGuild(Realm $realm, int $guildID)
@@ -113,11 +117,13 @@ class GuildMemberController extends Controller
     }
 
     /**
-     * Resolve a Guild Member from a guild and Character ID
+     * Resolve a Guild Member from a guild and Character ID.
      *
      * @param Guild $guild
-     * @param int $characterID
+     * @param int   $characterID
+     *
      * @throws ModelNotFoundException
+     *
      * @return GuildMember
      */
     protected function resolveGuildMember(Guild $guild, int $characterID)
@@ -128,9 +134,10 @@ class GuildMemberController extends Controller
     }
 
     /**
-     * Get validator for a member list search request
+     * Get validator for a member list search request.
      *
      * @param array $data
+     *
      * @return mixed
      */
     protected function membersSearchValidator(array $data)
@@ -140,8 +147,8 @@ class GuildMemberController extends Controller
                 'optional',
                 Rule::exists('characters'.$data['realm'].'.guild_rank')
                     ->where('rid', $data['rank'])
-                    ->where('guildid', $data['guild'])
-            ]
+                    ->where('guildid', $data['guild']),
+            ],
         ]);
     }
 }
