@@ -81,7 +81,7 @@ class InventoryItem extends Pivot
     public function bagInstance()
     {
         if ($this->bag == 0) {
-            return null;
+            return;
         }
 
         return $this->belongsTo(ItemInstance::class, 'bag', 'guid');

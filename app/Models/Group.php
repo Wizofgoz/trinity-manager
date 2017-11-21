@@ -111,7 +111,7 @@ class Group extends Model
     }
 
     /**
-     * Convenience method for returning whether the group is in "Free For All" loot mode
+     * Convenience method for returning whether the group is in "Free For All" loot mode.
      *
      * @return bool
      */
@@ -120,9 +120,8 @@ class Group extends Model
         return $this->isLootType(self::LOOT_FREE_FOR_ALL);
     }
 
-
     /**
-     * Convenience method for returning whether the group is in "Round Robin" loot mode
+     * Convenience method for returning whether the group is in "Round Robin" loot mode.
      *
      * @return bool
      */
@@ -132,7 +131,7 @@ class Group extends Model
     }
 
     /**
-     * Convenience method for returning whether the group is in "Master Looter" loot mode
+     * Convenience method for returning whether the group is in "Master Looter" loot mode.
      *
      * @return bool
      */
@@ -142,7 +141,7 @@ class Group extends Model
     }
 
     /**
-     * Convenience method for returning whether the group is in "Group Loot" loot mode
+     * Convenience method for returning whether the group is in "Group Loot" loot mode.
      *
      * @return bool
      */
@@ -152,7 +151,7 @@ class Group extends Model
     }
 
     /**
-     * Convenience method for returning whether the group is in "Need Before Greed" loot mode
+     * Convenience method for returning whether the group is in "Need Before Greed" loot mode.
      *
      * @return bool
      */
