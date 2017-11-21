@@ -1,5 +1,5 @@
 {
-  "authHost": "https://wow.evecommander.com",
+  "authHost": "",
   "authEndpoint": "/broadcasting/auth",
   "clients": [
     {
@@ -19,8 +19,8 @@
   "port": "6001",
   "protocol": "https",
   "socketio": {},
-  "sslCertPath": "/etc/letsencrypt/live/wow.evecommander.com/fullchain.pem",
-  "sslKeyPath": "/etc/letsencrypt/live/wow.evecommander.com/privkey.pem",
+  "sslCertPath": "",
+  "sslKeyPath": "",
   "sslCertChainPath": "",
   "sslPassphrase": "",
   "apiOriginAllow": {

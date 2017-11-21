@@ -182,6 +182,6 @@ class Realm extends Model
      */
     public function uptime()
     {
-        return $this->hasOne('App\Models\Uptime', 'realmid');
+        return $this->hasOne(Uptime::class, 'realmid');
     }
 }

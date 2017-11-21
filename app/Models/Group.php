@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\BelongsToRealm;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
@@ -31,28 +32,132 @@ class Group extends Model
         self::TYPE_LOOKING_FOR_GROUP => 'Looking For Group',
     ];
 
+    /**
+     * Table the model resides in.
+     *
+     * @var string
+     */
     protected $table = 'groups';
 
+    /**
+     * Whether the model has standard timestamp columns.
+     *
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * Name of column marked as the primary key for the model.
+     *
+     * @var string
+     */
     protected $primaryKey = 'guid';
 
+    /**
+     * Defines relation between this group and the character marked as the leader.
+     *
+     * @return Builder
+     */
     public function leader()
     {
         return $this->belongsTo(Character::class, 'leaderGuid', 'guid');
     }
 
+    /**
+     * Defines relation between this group and the character marked as the loot master.
+     * If the group is not using a master looter, returns false.
+     *
+     * @return bool|Builder
+     */
     public function lootMaster()
     {
-        if ($this->lootMethod != self::LOOT_MASTER) {
+        if (!$this->isMasterLoot()) {
             return false;
         }
 
         return $this->belongsTo(Character::class, 'looterGuid', 'guid');
     }
 
+    /**
+     * Returns the string name of the type of the group.
+     *
+     * @return string
+     */
     public function typeName()
     {
         return self::TYPE_MAP[$this->groupType];
+    }
+
+    /**
+     * Returns the string name of the loot mode the group is in.
+     *
+     * @return string
+     */
+    public function lootTypeName()
+    {
+        return self::TYPE_MAP[$this->lootMethod];
+    }
+
+    /**
+     * Returns whether the group is using the given loot type.
+     *
+     * @param int $lootType
+     *
+     * @return bool
+     */
+    public function isLootType(int $lootType)
+    {
+        return $this->lootMethod === $lootType;
+    }
+
+    /**
+     * Convenience method for returning whether the group is in "Free For All" loot mode
+     *
+     * @return bool
+     */
+    public function isFreeForAllLoot()
+    {
+        return $this->isLootType(self::LOOT_FREE_FOR_ALL);
+    }
+
+
+    /**
+     * Convenience method for returning whether the group is in "Round Robin" loot mode
+     *
+     * @return bool
+     */
+    public function isRoundRobinLoot()
+    {
+        return $this->isLootType(self::LOOT_ROUND_ROBIN);
+    }
+
+    /**
+     * Convenience method for returning whether the group is in "Master Looter" loot mode
+     *
+     * @return bool
+     */
+    public function isMasterLoot()
+    {
+        return $this->isLootType(self::LOOT_MASTER);
+    }
+
+    /**
+     * Convenience method for returning whether the group is in "Group Loot" loot mode
+     *
+     * @return bool
+     */
+    public function isGroupLoot()
+    {
+        return $this->isLootType(self::LOOT_GROUP);
+    }
+
+    /**
+     * Convenience method for returning whether the group is in "Need Before Greed" loot mode
+     *
+     * @return bool
+     */
+    public function isNeedBeforeGreedLoot()
+    {
+        return $this->isLootType(self::LOOT_NEED_BEFORE_GREED);
     }
 }

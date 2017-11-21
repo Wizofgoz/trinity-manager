@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
     web:
@@ -12,7 +12,6 @@ services:
     php:
         build:
           context: ./php-fpm
-          dockerfile: ./php-fpm/Dockerfile
         image: trinity-php:alpine
         volumes:
             - ~/dev/trinity-manager:/var/www/trinity-manager
@@ -45,7 +44,7 @@ services:
             - ./server/etc/authserver.conf:/srv/server/etc/authserver.conf
         depends_on:
           - mysql
-        command: /home/server/bin/worldserver
+        command: /home/server/bin/authserver
     echo-server:
         image: lagun4ik/laravel-echo-server
         ports:

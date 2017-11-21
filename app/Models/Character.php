@@ -315,7 +315,7 @@ class Character extends Model
     {
         return $this->belongsToMany(ItemInstance::class, 'character_inventory', 'guid', 'item', 'guid', 'guid')
             ->wherePivot('bag', '=', InventoryItem::INVENTORY_EQUIPPED)
-            ->wherePivotIn('slot', SLOT_TYPES_MAIN_BANK)
+            ->wherePivotIn('slot', InventoryItem::SLOT_TYPES_MAIN_BANK)
             ->using(InventoryItem::class)
             ->as('slot');
     }
@@ -329,7 +329,7 @@ class Character extends Model
     {
         return $this->belongsToMany(ItemInstance::class, 'character_inventory', 'guid', 'item', 'guid', 'guid')
             ->wherePivot('bag', '=', InventoryItem::INVENTORY_EQUIPPED)
-            ->wherePivotIn('slot', SLOT_TYPES_BANK_BAGS)
+            ->wherePivotIn('slot', InventoryItem::SLOT_TYPES_BANK_BAGS)
             ->using(InventoryItem::class)
             ->as('slot');
     }
@@ -343,7 +343,7 @@ class Character extends Model
     {
         return $this->belongsToMany(ItemInstance::class, 'character_inventory', 'guid', 'item', 'guid', 'guid')
             ->wherePivot('bag', '=', InventoryItem::INVENTORY_EQUIPPED)
-            ->wherePivotIn('slot', SLOT_TYPES_KEYRING)
+            ->wherePivotIn('slot', InventoryItem::SLOT_TYPES_KEYRING)
             ->using(InventoryItem::class)
             ->as('slot');
     }
@@ -357,7 +357,7 @@ class Character extends Model
     {
         return $this->belongsToMany(ItemInstance::class, 'character_inventory', 'guid', 'item', 'guid', 'guid')
             ->wherePivot('bag', '=', InventoryItem::INVENTORY_EQUIPPED)
-            ->wherePivotIn('slot', SLOT_TYPES_CURRENCIES)
+            ->wherePivotIn('slot', InventoryItem::SLOT_TYPES_CURRENCIES)
             ->using(InventoryItem::class)
             ->as('slot');
     }
@@ -369,7 +369,7 @@ class Character extends Model
      */
     public function stats()
     {
-        return DB::connection($this->getConnectionName())->table('character_stats')->where('guid', '=', $this->guid)->first();
+        return DB::setRealm($this->realm)->table('character_stats')->where('guid', '=', $this->guid)->first();
     }
 
     /**
@@ -379,7 +379,7 @@ class Character extends Model
      */
     public function xpToLevel()
     {
-        return DB::connection('world')->table('player_xp_for_level')->where('level', '=', $this->level)->first('Experience');
+        return DB::setRealm($this->realm)->table('player_xp_for_level')->where('level', '=', $this->level)->first('Experience');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\BelongsToRealm;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -31,20 +32,44 @@ class Instance extends Model
         self::DIFFICULTY_RAID_HEROIC_25 => 'Heroic 25-man',
     ];
 
+    /**
+     * Table the model resides in.
+     *
+     * @var string
+     */
     protected $table = 'instance';
 
+    /**
+     * Whether the model has standard timestamp columns.
+     *
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * Defines relation between this instance and any groups that are bound to it.
+     *
+     * @return Builder
+     */
     public function groups()
     {
         return $this->belongsToMany(Group::class, 'group_instance', 'instance', 'guid', 'id', 'guid');
     }
 
+    /**
+     * Defines relation between this instance and any characters that are bound to it.
+     *
+     * @return Builder
+     */
     public function characters()
     {
         return $this->belongsToMany(Character::class, 'character_instance', 'instance', 'guid', 'id', 'guid');
     }
 
+    /**
+     * Defines relation between this instance and the map it belongs to.
+     * TODO: Implement!
+     */
     public function map()
     {
     }
