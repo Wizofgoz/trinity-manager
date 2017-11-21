@@ -69,7 +69,7 @@ class Ticket extends Model
         }
 
         if ($this->isClosedByConsole()) {
-            return null;
+            return;
         }
 
         return $this->belongsTo(Character::class, 'closedBy', 'guid');
